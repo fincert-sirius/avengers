@@ -125,3 +125,7 @@ dmypy.json
 
 # sqlite database
 *.db
+
+# npm
+
+node_modules
