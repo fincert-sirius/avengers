@@ -6,4 +6,5 @@
 - make virtual env: `python3 -m venv env`
 - activate virtual env: `source env/bin/activate`
 - install packages: `pip install -r requirements.txt`
-- run flask app: `FLASK_APP=hello.py flask run`
+- update your database: `FLASK_APP=app.py flask db upgrade`
+- run flask app: `FLASK_APP=app.py flask run`
