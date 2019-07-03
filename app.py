@@ -9,8 +9,5 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-@app.route("/")
-def hello():
-    return "Hello World!"
-    
 from src import models
+from src import routes
