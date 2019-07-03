@@ -7,6 +7,4 @@
 - activate virtual env: `source env/bin/activate`
 - install packages for backend: `pip install -r requirements.txt`
 - update your database: `FLASK_APP=app.py flask db upgrade`
-- install packages for frontend: `npm i`
-- build frontend: `./node_modules/.bin/webpack`
 - run flask app: `FLASK_APP=app.py flask run`
