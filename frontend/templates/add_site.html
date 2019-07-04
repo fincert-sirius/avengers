@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="/add" method="POST">
+		{{ form.csrf_token }}
+		<p>
+			{{ form.url.label }} {{ form.url }}
+		</p>
+	
+		<p>
+			<input type="submit">
+		</p>
+	</form>
+</body>
+</html>

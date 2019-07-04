@@ -7,6 +7,13 @@
 <body>
 	
 	<h1>Hello, {{ user.username }}</h1>
+	
+	<h2>Sites:</h2>
+	<ul>
+		{% for site in sites %}
+			<li>{{ site.url }}</li>
+		{% endfor %}
+	</ul>
 
 </body>
 </html>

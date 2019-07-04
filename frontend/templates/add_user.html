@@ -5,22 +5,16 @@
 	<title>Document</title>
 </head>
 <body>
-	<form action="/login" method="POST">
-		{% if error %}
-			<p>
-				{{ error }}
-			</p>
-		{% endif %}
-
+	<form action="/add_user" method="POST">
 		{{ form.csrf_token }}
 		<p>
 			{{ form.login.label }} {{ form.login }}
 		</p>
-		
+
 		<p>
 			{{ form.password.label }} {{ form.password }}
 		</p>
-		
+	
 		<p>
 			<input type="submit">
 		</p>
