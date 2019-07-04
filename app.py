@@ -4,7 +4,12 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 
-app = Flask(__name__, template_folder="frontend/templates", static_folder="frontend/static")
+app = Flask(
+	__name__,
+	template_folder="frontend/templates",
+	static_folder="frontend/static",
+)
+
 app.config.from_object(Config)
 
 db = SQLAlchemy(app)
