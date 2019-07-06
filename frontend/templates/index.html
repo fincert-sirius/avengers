@@ -1,19 +1,42 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Профиль</title>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="img/sova.png" type="image/x-icon">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../css/uikit.min.css">
+	<link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
 	
-	<h1>Hello, {{ user.username }}</h1>
-	
-	<h2>Sites:</h2>
-	<ul>
-		{% for site in sites %}
-			<li>{{ site.url }}</li>
-		{% endfor %}
-	</ul>
+	{% block content %}{% endblock %}
+	<div class="uk-container" uk-sortable="handle: .uk-card">
+	    <div uk-filter="target: .js-filter">
+	        <ul class="uk-subnav uk-subnav-pill uk-animation-slide-top-small">
+	            <li uk-filter-control><a href="#">Все</a></li>
+	            <li class="uk-active" uk-filter-control="[data-color='blue']"><a href="#">На рассмотрение</a></li>
+	            <li uk-filter-control="[data-color='grey']"><a class="badge-active-grey" href="#">На проверке системой</a></li>
+	            <li uk-filter-control="[data-color='dark']"><a class="badge-active-dark" href="#">Решение вынесено</a></li>
+	        </ul>
+
+	        <div class="js-filter uk-animation-slide-bottom-small">
+				{% for site in sites %}
+		            <div data-color="blue" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
+		                <div class="uk-badge uk-margin-right uk-margin-small-top"></div>
+		                <ul class="uk-subnav uk-subnav-divider uk-margin-remove-top">
+		                    <a href="site.html" class="uk-text-large uk-text-middle">{{ site.url }}</a>
+		                    <li>{{ type }}</li>
+		                    <li>{{ criterion }}</li>
+		                    <li>{{ date }}</li>
+		                </ul>
+		            </div>
+	            {% endfor %}
+	        </div>
+	    </div>
+	</div>
+	<script src="js/uikit.min.js"></script>
+    <script src="js/uikit-icons.min.js"></script>
 
 </body>
 </html>
