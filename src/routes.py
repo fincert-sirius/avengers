@@ -2,7 +2,7 @@ from app import app
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, login_required, current_user, logout_user
 from src.models import User, Site
-from app import login_manager, db
+from app import login_manager, db, log
 from src import forms
 
 @app.route("/")
@@ -78,3 +78,12 @@ def add_user():
         return redirect(url_for("index"))
 
     return render_template("add_user.html", form=form)
+
+@app.route("/upload_excel", methods=["GET", "POST"])
+def upload_sites_excel():
+    form = forms.UploadSitesExcel()
+    if form.validate_on_submit():
+        f = form.excel.data
+        pass
+
+    return render_template("upload_sites_excel.html", form=form)
