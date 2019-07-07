@@ -3,7 +3,7 @@ from flask import render_template, request, redirect, url_for
 from flask_login import login_user, login_required, current_user, logout_user
 from src.models import User, Site
 from app import login_manager, db, log
-from src import forms
+from src import forms, scorer
 
 @app.route("/")
 @login_required
@@ -11,7 +11,8 @@ def index():
     return render_template(
         "index.html",
         user=current_user,
-        sites = Site.query.all()
+        sites = Site.query.all(),
+        scorer = lambda x: scorer.default_scorer.score(x)
     )
 
 @app.route("/login", methods=["GET", "POST"])

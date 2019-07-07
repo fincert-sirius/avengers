@@ -12,6 +12,7 @@
 	<ul>
 		{% for site in sites %}
 			<li>{{ site.url }}</li>
+			<li>{{ score(site.url) }}</li>
 		{% endfor %}
 	</ul>
 

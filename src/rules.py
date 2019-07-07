@@ -64,10 +64,10 @@ class Keywords:
 				score += suspicious['keywords'][word]
 		return score
 
-	def max_score:
+	def max_score():
 		return const
 
-	def get_description:
+	def get_description():
 		return """
 			Some keywords(...)
 		"""
@@ -113,7 +113,7 @@ class Many_subdomains:
 		if domain.count('.') >= 3:
 			return domain.count('.') * 3
 
-	def max_score:
+	def max_score():
 		return const
 
 	def get_description():
