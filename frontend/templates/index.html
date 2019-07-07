@@ -11,8 +11,18 @@
 	<h2>Sites:</h2>
 	<ul>
 		{% for site in sites %}
-			<li>{{ site.url }}</li>
-			<li>{{ score(site.url) }}</li>
+			<li>
+				site: {{ site.url }} <br>
+				
+				<ul>	
+					{% for cause in score(site.url) %}
+						<li>
+							description: {{ cause["desc"] }} <br>
+							score: {{ cause["score"] }}
+						</li>				
+					{% endfor %}
+				</ul>
+			</li>
 		{% endfor %}
 	</ul>
 

@@ -12,7 +12,7 @@ def index():
         "index.html",
         user=current_user,
         sites = Site.query.all(),
-        scorer = lambda x: scorer.default_scorer.score(x)
+        score = lambda x: scorer.default_scorer.get_score(x)
     )
 
 @app.route("/login", methods=["GET", "POST"])
