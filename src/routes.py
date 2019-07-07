@@ -11,7 +11,7 @@ def index():
     return render_template(
         "index.html",
         user=current_user,
-        sites = Site.query.all()
+        sites=Site.query.all()
     )
 
 @app.route("/login", methods=["GET", "POST"])
@@ -87,3 +87,6 @@ def upload_sites_excel():
         pass
 
     return render_template("upload_sites_excel.html", form=form)
+
+#@app.route("/site/<int:site_id>", methods=["GET", "POST"])
+#def site_info(site_id):

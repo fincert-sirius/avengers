@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-</head>
-<body>
+
+{% extends "base.html" %}
+
+{% block content %}
 	<form action="/add" method="POST">
 		{{ form.csrf_token }}
 		<p>
@@ -15,5 +12,7 @@
 			<input type="submit">
 		</p>
 	</form>
-</body>
-</html>
+
+{% endblock %}
+
+

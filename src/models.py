@@ -11,10 +11,11 @@ class User(db.Model, UserMixin):
 
 
 class SiteStatus(Enum):
-	NEW = 0
-	PROCESSING = 1
-	BLOCKED = 2
-	GOOD_SITE = 3
+    NEW = 0
+    PROCESSING = 1
+    BLOCKED = 2
+    GOOD_SITE = 3
+
 
 class Site(db.Model):
     id = db.Column(db.Integer, primary_key=True)
