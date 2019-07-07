@@ -4,12 +4,8 @@ from tld import get_tld
 # Temporary var for returning max score
 const = 120
 
-with open('suspicious.yaml', 'r') as f:
+with open('config/suspicious.yaml', 'r') as f:
 		suspicious = yaml.safe_load(f)
-
-with open('external.yaml', 'r') as f:
-		external = yaml.safe_load(f)
-
 
 class Susp_ending:
 	def get_score(domain):
