@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-	<title>Профиль</title>
-	<meta charset="utf-8">
-	<link rel="shortcut icon" href="img/sova.png" type="image/x-icon">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="../css/uikit.min.css">
-	<link rel="stylesheet" href="../css/main.css">
-</head>
-<body>
-	
-	{% block content %}{% endblock %}
+{% extends "base.html" %}
+
+{% block content %}
 	<div class="uk-container" uk-sortable="handle: .uk-card">
 	    <div uk-filter="target: .js-filter">
 	        <ul class="uk-subnav uk-subnav-pill uk-animation-slide-top-small">
@@ -22,7 +12,7 @@
 
 	        <div class="js-filter uk-animation-slide-bottom-small">
 				{% for site in sites %}
-		            <div data-color="blue" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
+		            <div data-color="{{ status }}" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
 		                <div class="uk-badge uk-margin-right uk-margin-small-top"></div>
 		                <ul class="uk-subnav uk-subnav-divider uk-margin-remove-top">
 		                    <a href="site.html" class="uk-text-large uk-text-middle">{{ site.url }}</a>
@@ -35,8 +25,4 @@
 	        </div>
 	    </div>
 	</div>
-	<script src="js/uikit.min.js"></script>
-    <script src="js/uikit-icons.min.js"></script>
-
-</body>
-</html>
+{% endblock %}
