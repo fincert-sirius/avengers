@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-</head>
-<body>
+
+{% extends "base.html" %}
+
+{% block content %}
+
+
 	<form action="/upload_excel" method="POST"  enctype="multipart/form-data">
 		{{ form.csrf_token }}
 		<p>
@@ -15,5 +14,6 @@
 			<input type="submit">
 		</p>
 	</form>
-</body>
-</html>
+
+{%endblock%}
+
