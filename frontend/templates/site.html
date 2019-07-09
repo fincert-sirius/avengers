@@ -1,33 +1,10 @@
-<!DOCTYPE html>
-<html lang="ru">
-    <head>
-        <title>Сайт</title>
-        <meta charset="utf-8">
-        <link rel="shortcut icon" href="img/sova.png" type="image/x-icon">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/static/css/uikit.min.css">
-        <link rel="stylesheet" href="/static/css/main.css">
-    </head>
-    <body>
-        <div class="uk-container uk-animation-slide-top-medium">
-            <div class="row uk-margin-top">
-                <a href="" class="uk-align-left sova-top">
-                    <img src="/static/img/sova.png" class="top-img-wigth" alt="">
-                </a>
+{% extends "base.html" %}
 
-                <div class="uk-align-right uk-text-bottom">
-                    <div class="uk-inline uk-margin-right">
-                        <span class="uk-text-secondary uk-margin-small-right">{{ user.username }}</span>
-                        <a href="" class="uk-button-link">Выйти</a>
-                    </div>
+{% block title %}
+    {{ site.url }}
+{% endblock %}
 
-                    <div class="uk-inline">
-                        <span class="uk-form-icon" uk-icon="icon: search"></span>
-                        <input class="uk-input" placeholder="Добавить домен">
-                    </div>
-                </div>
-            </div>
-        </div>
+{% block content %}
         <div class="uk-container">
             <a href="/" class="uk-width-1-6 uk-text-large no-underline"><span uk-icon="icon: chevron-left"></span> Назад</a>
             <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-width-1-1uk-animation-slide-bottom-small">
@@ -82,7 +59,4 @@
                 <span></span>
             </div>
         </div>
-        <script src="/static/js/uikit.min.js"></script>
-        <script src="/static/js/uikit-icons.min.js"></script>
-    </body>
-</html>
+{% endblock %}
