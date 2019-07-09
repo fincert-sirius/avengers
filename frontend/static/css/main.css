@@ -1,6 +1,8 @@
-.uk-container .uk-button {
-	text-transform: capitalize;
-	font-size: 15px;
+body {
+	font-size: 18px;
+}
+.top h2 {
+	word-break: break-all;
 }
 .top-img-wigth {
 	width: 30%;
@@ -14,22 +16,12 @@
 .badge-grey {
 	background: #ccc;
 }
+.uk-container .uk-button {
+	text-transform: capitalize;
+	font-size: 15px;
+}
 a.no-underline:hover {
 	text-decoration: none;
-}
-.top h2 {
-	word-break: break-all;
-}
-body {
-	font-size: 18px;
-}
-.uk-card-default {
-  background: #fff;
-  color: #666;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-}
-.uk-button {
-	text-transform: none;
 }
 .uk-button-danger {
 	background: #D9534F;
@@ -44,4 +36,7 @@ ul.uk-subnav > li.uk-active > .badge-active-grey {
 }
 ul.uk-subnav > li.uk-active > .badge-active-dark {
 	background: #222;
+}
+.uk-button {
+	text-transform: none;
 }
