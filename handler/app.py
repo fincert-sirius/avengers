@@ -16,14 +16,15 @@ def handling(q):
         # magic...
         time.sleep(15)
         verdict = 0
+        comment = 'Some notes'
         f = open('verdicts.json', mode='r')
         data = json.load(f)
-        data[domain] = verdict
+        data[domain] = [verdict, comment]
         f.close()
         f = open('verdicts.json', mode='w')
         json.dump(data, f)
         f.close()
-            
+
 
 #----------------------------------------
 
@@ -48,7 +49,7 @@ handlingThread.start()
 def api():
     domain = request.args.get('domain')
     domainsQueue.put(domain)
-    return 'added to queue'1
+    return 'added to queue'
 
 @app.route('/results')
 def results():
@@ -56,7 +57,7 @@ def results():
         data = json.load(f)
         return json.dumps(data)
     return 'error'
-    
+
 
 
 app.run(host=config['host'], port=config['port'])

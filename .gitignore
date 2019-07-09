@@ -132,3 +132,4 @@ node_modules
 
 # others
 handler/.vscode
+handler/verdicts.json
