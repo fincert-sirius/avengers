@@ -10,12 +10,12 @@
 </head>
 <body>
 	<div class="uk-container">
-	    <div class="row uk-margin-top uk-animation-slide-top-medium">
+	    <div class="uk-margin-top uk-animation-slide-top-medium">
 	        <a href="" class="uk-align-left">
 	            <img src="/static/img/sova.png" class="top-img-wigth" alt="">
 	        </a>
 
-	        <div class="uk-align-right uk-text-bottom">
+	        <div class="uk-align-right uk-flex uk-flex-middle">
 	            <div class="uk-inline uk-margin-right">
 	                <span class="uk-text-secondary uk-margin-small-right">{{ user.username }}</span>
 	                <a href="/logout" class="uk-button-link">Выйти</a>
@@ -32,8 +32,8 @@
 	</div>
 	{% block content %}{% endblock %}
 	
-	<script src="../static/js/uikit.min.js"></script>
-    <script src="../static/js/uikit-icons.min.js"></script>
+	<script src="/static/js/uikit.min.js"></script>
+    <script src="/static/js/uikit-icons.min.js"></script>
 
 </body>
 </html>
