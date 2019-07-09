@@ -41,7 +41,7 @@
                             <li>
                                 <ul class="uk-list uk-list-striped uk-width-3-4">
                                     {% for web in webarchive %}
-                                    <li>{{ web }}</li>
+                                    <li>Date:{{ web[0][0:4] }}.{{ web[0][4:6] }}.{{ web[0][6:8] }}  Url: {{ web[1][7:] }}  HTML Lenght: {{ web[2] }} </li>
                                     {% endfor %}
                                 </ul>
                             </li>
