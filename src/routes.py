@@ -95,5 +95,7 @@ def upload_sites_excel():
 
 # @app.route("/")
 
-# @app.route("/site/<int:site_id>", methods=["GET", "POST"])
-# def site_info(site_id):
+@app.route("/site/<int:site_id>", methods=["GET", "POST"])
+def site_info(site_id):
+    current_site = Site.query.filter(Site.id == site_id).first()
+    return render_template('site.html', site=current_site, user=current_user)
