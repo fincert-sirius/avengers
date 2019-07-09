@@ -38,7 +38,6 @@ def from_lst_to_db(path):
 
 #def from_list_to_db(path):
 
-#def web_archive(url):
 
 def web_archive(DOMAIN, FROM=2018, TO=2019):
     # Готовим запрос.

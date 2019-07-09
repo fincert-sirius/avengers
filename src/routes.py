@@ -101,4 +101,21 @@ def site_info(site_id):
     current_site = Site.query.filter(Site.id == site_id).first()
     return render_template('site.html', site=current_site, user=current_user, webarchive=mainfunc.web_archive(current_site.url))
 
+@app.route("/ban/site/<int:site_id>", methods=["GET", "POST"])
+def ban_site(site_id):
+    current_site = Site.query.filter(Site.id == site_id).first()
+    current_site.status = 'BLOCKED'
+    db.session.commit()
+    return redirect(url_for('index'))
+
+
+@app.route("/clear/site/<int:site_id>", methods=["GET", "POST"])
+def clear_site(site_id):
+    current_site = Site.query.filter(Site.id == site_id).first()
+    current_site.status = 'GOOD_SITE'
+    db.session.commit()
+    return redirect(url_for('index'))
+
+
+
 
