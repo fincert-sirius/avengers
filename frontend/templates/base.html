@@ -21,10 +21,12 @@
 	                <a href="/logout" class="uk-button-link">Выйти</a>
 	            </div>
 
-	            <div class="uk-inline">
-	                <span class="uk-form-icon" uk-icon="icon: search"></span>
-	                <input class="uk-input" placeholder="Добавить домен">
-	            </div>
+	            <form action="/add"><!--  в action нужно написать ссылку обработчика файл.py -->
+		            <div class="uk-inline">
+		                <span class="uk-form-icon" uk-icon="icon: search"></span>
+		                <input class="uk-input" name="url" placeholder="Добавить домен"> <!-- используй идентификатор site (можно переименовать), чтобы выцепить то, что написано в инпуте -->
+		            </div>
+				</form>
 	        </div>
 	    </div>
 	</div>

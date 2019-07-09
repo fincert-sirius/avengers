@@ -8,11 +8,11 @@ from src import forms
 @app.route("/")
 @login_required
 def index():
+
     return render_template(
         "index.html",
         user=current_user,
-        sites=Site.query.all()
-    )
+        sites=Site.query.all())
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -62,7 +62,7 @@ def add_site():
 
         return redirect(url_for("index"))
 
-    return render_template("add_site.html", form=form)
+    return render_template("add_site.html",user=current_user, form=form)
 
 @app.route("/add_user", methods=["GET", "POST"])
 def add_user():
@@ -71,7 +71,6 @@ def add_user():
         login = form.login.data
         password = form.password.data
         user = User(username=login, password_hash=password)
-
         db.session.add(user)
         db.session.commit()
 
@@ -88,5 +87,9 @@ def upload_sites_excel():
 
     return render_template("upload_sites_excel.html", form=form)
 
+#@app.route("/")
+
 #@app.route("/site/<int:site_id>", methods=["GET", "POST"])
 #def site_info(site_id):
+
+
