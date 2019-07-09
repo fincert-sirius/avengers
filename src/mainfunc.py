@@ -1,3 +1,5 @@
+import  requests, json
+
 def from_txt_to_db(path):
     with open(path,'r') as f:
         try:
@@ -35,3 +37,24 @@ def from_lst_to_db(path):
         return result
 
 #def from_list_to_db(path):
+
+#def web_archive(url):
+
+def web_archive(DOMAIN, FROM=2018, TO=2019):
+    # Готовим запрос.
+    # Ключи web archive: [["urlkey","timestamp","original","mimetype","statuscode","digest","length"],
+    web_request = "https://web.archive.org/cdx/search/cdx?url=*.{}/*&output=json&from={}&to={}&fl=timestamp,original,length&showResumeKey=true".format(
+        DOMAIN, str(FROM), str(TO))
+    response = None
+    try:
+        response = requests.get(web_request)
+
+        if response:
+            json_response = response.json()
+            return json_response
+        else:
+            return "Ошибка выполнения запроса:\n", "Http статус:", response.status_code, "(", response.reason, ")"
+
+    except:
+        return "Запрос не удалось выполнить. Проверьте подключение к сети Интернет."
+

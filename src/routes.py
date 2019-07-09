@@ -1,10 +1,11 @@
 from app import app
+import mainfunc
+
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, login_required, current_user, logout_user
 from src.models import User, Site
 from app import login_manager, db, log
 from src import forms
-
 
 @app.route("/")
 @login_required
@@ -98,4 +99,6 @@ def upload_sites_excel():
 @app.route("/site/<int:site_id>", methods=["GET", "POST"])
 def site_info(site_id):
     current_site = Site.query.filter(Site.id == site_id).first()
-    return render_template('site.html', site=current_site, user=current_user)
+    return render_template('site.html', site=current_site, user=current_user, webarchive=mainfunc.web_archive(current_site.url))
+
+

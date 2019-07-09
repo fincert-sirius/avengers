@@ -33,18 +33,16 @@
                         <ul class="uk-switcher uk-margin">
                             <li class="uk-active">
                                 <ul class="uk-list uk-list-striped uk-width-3-4">
-                                    <li>Lorem ipsum dolor sit whois.</li>
-                                    <li>Lorem ipsum dolor sit whois.</li>
-                                    <li>Lorem ipsum dolor sit whois.</li>
-                                    <li>Lorem ipsum dolor sit whois.</li>
+                                    {% for who in site.whois %}
+                                    <li>{{ who }}</li>
+                                    {% endfor %}
                                 </ul>
                             </li>
                             <li>
                                 <ul class="uk-list uk-list-striped uk-width-3-4">
-                                    <li>Lorem ipsum dolor sit webarchive.</li>
-                                    <li>Lorem ipsum dolor sit webarchive.</li>
-                                    <li>Lorem ipsum dolor sit webarchive.</li>
-                                    <li>Lorem ipsum dolor sit webarchive.</li>
+                                    {% for web in webarchive %}
+                                    <li>{{ web }}</li>
+                                    {% endfor %}
                                 </ul>
                             </li>
                         </ul>

@@ -3,7 +3,10 @@ from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
-from sys import stdout
+from sys import stdout, path
+
+path.insert(0, path[0] + '\\src')
+
 
 def log(str):
 	print(str, file=stdout)
