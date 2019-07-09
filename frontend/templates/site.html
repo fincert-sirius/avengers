@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-        <div class="uk-container">
+<div class="uk-container" xmlns="http://www.w3.org/1999/html">
             <a href="/" class="uk-width-1-6 uk-text-large no-underline"><span uk-icon="icon: chevron-left"></span> Назад</a>
             <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-width-1-1uk-animation-slide-bottom-small">
                 <div class="top uk-flex uk-flex-bottom uk-margin-bottom">
@@ -50,8 +50,8 @@
                     <div class="uk-text-secondary uk-margin-bottom">
                        <textarea name="" id="" class="uk-textarea uk-width-3-4" placeholder="Комментарий"></textarea>
                     </div>
-                    <button class="uk-button uk-button-danger">Заблокировать</button>
-                    <button class="uk-button uk-button-success">Оставить</button>
+                    <a href="/ban/site/{{ site.id }}" class="uk-button uk-button-danger">Заблокировать</a>
+                    <a href="/clear/site/{{ site.id }}"  class="uk-button uk-button-success">Оставить</a>
                     
                 </div>
                 <span></span>
