@@ -10,33 +10,34 @@
 	            <li uk-filter-control><a href="#">Все</a></li>
 	            <li class="uk-active" uk-filter-control="[data-color='blue']"><a href="#">На рассмотрение</a></li>
 	            <li uk-filter-control="[data-color='grey']"><a class="badge-active-grey" href="#">На проверке системой</a></li>
-	            <li uk-filter-control="[data-color='dark']"><a class="badge-active-dark" href="#">Решение вынесено</a></li>
+	            <li uk-filter-control="[data-color='red']"><a class="badge-active-dark" href="#">Заблокированы</a></li>
+	            <li uk-filter-control="[data-color='green']"><a class="badge-active-dark" href="#">Оставлены</a></li>
 	        </ul>
 
 	        <div class="js-filter uk-animation-slide-bottom-small">
 				{% for site in sites %}
 
-				{% if site.status == 0 %}
-		            <div data-color="blue" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
-						<div class="uk-badge uk-margin-right uk-margin-small-top"></div>
-				{% elif site.status == 1 %}
-					<div data-color="grey" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
-						<div class="uk-badge badge-grey uk-margin-right uk-margin-small-top"></div>
-				{% elif site.status == 2 %}
-					<div data-color="red" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
-						<div class="uk-badge badge-red uk-margin-right uk-margin-small-top"></div>
-				{% elif site.status == 3 %}
-					<div data-color="green" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
-						<div class="uk-badge badge-green uk-margin-right uk-margin-small-top"></div>
-				{% endif %}
+					{% if site.status == 0 %}
+			            <div data-color="blue" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
+							<div class="uk-badge uk-margin-right uk-margin-small-top"></div>
+					{% elif site.status == 1 %}
+						<div data-color="grey" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
+							<div class="uk-badge badge-grey uk-margin-right uk-margin-small-top"></div>
+					{% elif site.status == 2 %}
+						<div data-color="red" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
+							<div class="uk-badge badge-red uk-margin-right uk-margin-small-top"></div>
+					{% elif site.status == 3 %}
+						<div data-color="green" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
+							<div class="uk-badge badge-green uk-margin-right uk-margin-small-top"></div>
+					{% endif %}
 
-						<ul class="uk-subnav uk-subnav-divider uk-margin-remove-top">
-		                    <a href="site.html" class="uk-text-large uk-text-middle">{{ site.url }}</a>
-		                    <li>{{ type }}</li>
-		                    <li>{{ criterion }}</li>
-		                    <li>{{ date }}</li>
-		                </ul>
-		            </div>
+							<ul class="uk-subnav uk-subnav-divider uk-margin-remove-top">
+			                    <a href="site.html" class="uk-text-large uk-text-middle">{{ site.url }}</a>
+			                    <li>{{ type }}</li>
+			                    <li>{{ criterion }}</li>
+			                    <li>{{ date }}</li>
+			                </ul>
+			            </div>
 	            {% endfor %}
 	        </div>
 	    </div>

@@ -5,8 +5,11 @@
 .top-img-wigth {
 	width: 30%;
 }
-.badge-dark {
-	background: #222;
+.badge-green {
+	background: #32d296;
+}
+.badge-red {
+	background: #f0506e;
 }
 .badge-grey {
 	background: #ccc;
