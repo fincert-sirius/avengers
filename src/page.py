@@ -6,6 +6,9 @@ class Page:
 	def get_url(self):
 		return self.url
 
+	def get_domain(self):
+		pass
+
 	def get_html(self):
 		return self.html
 		
