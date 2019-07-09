@@ -15,9 +15,22 @@
 
 	        <div class="js-filter uk-animation-slide-bottom-small">
 				{% for site in sites %}
-		            <div data-color="{{ status }}" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
-		                <div class="uk-badge uk-margin-right uk-margin-small-top"></div>
-		                <ul class="uk-subnav uk-subnav-divider uk-margin-remove-top">
+
+				{% if site.status == 0 %}
+		            <div data-color="blue" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
+						<div class="uk-badge uk-margin-right uk-margin-small-top"></div>
+				{% elif site.status == 1 %}
+					<div data-color="grey" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
+						<div class="uk-badge badge-grey uk-margin-right uk-margin-small-top"></div>
+				{% elif site.status == 2 %}
+					<div data-color="red" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
+						<div class="uk-badge badge-red uk-margin-right uk-margin-small-top"></div>
+				{% elif site.status == 3 %}
+					<div data-color="green" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
+						<div class="uk-badge badge-green uk-margin-right uk-margin-small-top"></div>
+				{% endif %}
+
+						<ul class="uk-subnav uk-subnav-divider uk-margin-remove-top">
 		                    <a href="site.html" class="uk-text-large uk-text-middle">{{ site.url }}</a>
 		                    <li>{{ type }}</li>
 		                    <li>{{ criterion }}</li>

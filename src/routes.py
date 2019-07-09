@@ -5,14 +5,15 @@ from src.models import User, Site
 from app import login_manager, db, log
 from src import forms
 
+
 @app.route("/")
 @login_required
 def index():
-
     return render_template(
         "index.html",
         user=current_user,
         sites=Site.query.all())
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -41,14 +42,17 @@ def login():
 
     return render_template("login.html", form=form)
 
+
 @app.route("/logout")
 def logout():
     logout_user()
     return redirect(url_for("login"))
 
+
 @login_manager.unauthorized_handler
 def unauthorized():
     return redirect(url_for("login"))
+
 
 @app.route("/add", methods=["GET", "POST"])
 def add_site():
@@ -62,7 +66,8 @@ def add_site():
 
         return redirect(url_for("index"))
 
-    return render_template("add_site.html",user=current_user, form=form)
+    return render_template("add_site.html", user=current_user, form=form)
+
 
 @app.route("/add_user", methods=["GET", "POST"])
 def add_user():
@@ -78,6 +83,7 @@ def add_user():
 
     return render_template("add_user.html", form=form)
 
+
 @app.route("/upload_excel", methods=["GET", "POST"])
 def upload_sites_excel():
     form = forms.UploadSitesExcel()
@@ -87,9 +93,7 @@ def upload_sites_excel():
 
     return render_template("upload_sites_excel.html", form=form)
 
-#@app.route("/")
+# @app.route("/")
 
-#@app.route("/site/<int:site_id>", methods=["GET", "POST"])
-#def site_info(site_id):
-
-
+# @app.route("/site/<int:site_id>", methods=["GET", "POST"])
+# def site_info(site_id):
