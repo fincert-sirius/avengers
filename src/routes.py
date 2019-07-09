@@ -99,7 +99,7 @@ def upload_sites_excel():
 @app.route("/site/<int:site_id>", methods=["GET", "POST"])
 def site_info(site_id):
     current_site = Site.query.filter(Site.id == site_id).first()
-    return render_template('site.html', site=current_site, user=current_user, webarchive=mainfunc.web_archive(current_site.url))
+    return render_template('site.html', site=current_site, user=current_user, webarchive=mainfunc.web_archive(current_site.url)[1:])
 
 @app.route("/ban/site/<int:site_id>", methods=["GET", "POST"])
 def ban_site(site_id):
@@ -117,5 +117,5 @@ def clear_site(site_id):
     return redirect(url_for('index'))
 
 
-
-
+#@app.route("/upload_file")
+#def upload(path)

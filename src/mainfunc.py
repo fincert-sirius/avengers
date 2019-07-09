@@ -42,7 +42,7 @@ def from_lst_to_db(path):
 def web_archive(DOMAIN, FROM=2018, TO=2019):
     # Готовим запрос.
     # Ключи web archive: [["urlkey","timestamp","original","mimetype","statuscode","digest","length"],
-    web_request = "https://web.archive.org/cdx/search/cdx?url=*.{}/*&output=json&from={}&to={}&fl=timestamp,original,length&showResumeKey=true".format(
+    web_request = "https://web.archive.org/cdx/search/cdx?url=*.{}/*&output=json&from={}&to={}&fl=timestamp,original,length&limit=100".format(
         DOMAIN, str(FROM), str(TO))
     response = None
     try:
