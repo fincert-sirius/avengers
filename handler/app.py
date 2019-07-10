@@ -37,8 +37,12 @@ logging.basicConfig(level='INFO')
 # read config
 config = None
 with open('config.yml', mode='r') as f:
-    config = yaml.safe_load(f)
-    logging.info("Config loaded")
+    try:
+        config = yaml.safe_load(f)
+        logging.info("Config loaded")
+    except:
+        logging.fatal("Cannot load config")
+        exit(0)
 
 app = Flask(__name__)
 
