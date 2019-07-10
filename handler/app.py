@@ -67,7 +67,7 @@ def results():
     return 'error'
 
 
-
-app.run(host=config['host'], port=config['port'])
+if __name__ == "__main__":
+    app.run(host=config['host'], port=config['port'])
 
 
