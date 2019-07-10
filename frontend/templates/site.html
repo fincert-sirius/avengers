@@ -32,14 +32,30 @@
                         </ul>
                         <ul class="uk-switcher uk-margin">
                             <li class="uk-active">
-                                <ul class="uk-list uk-list-striped uk-width-3-4">
+                                <ul class="uk-list uk-list-striped">
                                     {% for who in site.whois %}
                                     <li>{{ who }}</li>
                                     {% endfor %}
                                 </ul>
                             </li>
                             <li>
-                                <ul class="uk-list uk-list-striped uk-width-3-4">
+                                <form class="uk-form-horizontal">
+                                    <div class="uk-margin uk-width-1-2">
+                                        <label class="uk-form-label" for="form-stacked-text">Дата начала</label>
+                                        <div class="uk-form-controls">
+                                            <input class="uk-input" id="form-stacked-text" type="date">
+                                        </div>
+                                    </div>
+                                    <div class="uk-margin uk-width-1-2">
+                                        <label class="uk-form-label" for="form-stacked-text">Дата окончания</label>
+                                        <div class="uk-form-controls">
+                                            <input class="uk-input" id="form-stacked-text" type="date">
+                                        </div>
+                                    </div>
+                                    
+                                </form>
+
+                                <ul class="uk-list uk-list-striped">
                                     {% for web in webarchive %}
                                     <li>{{ web }}</li>
                                     {% endfor %}
@@ -50,11 +66,12 @@
                     <div class="uk-text-secondary uk-margin-bottom">
                        <textarea name="" id="" class="uk-textarea uk-width-3-4" placeholder="Комментарий"></textarea>
                     </div>
-                    <button class="uk-button uk-button-danger">Заблокировать</button>
-                    <button class="uk-button uk-button-success">Оставить</button>
+                    <a href="" class="uk-button uk-button-danger">Заблокировать</a>
+                    <a href="" class="uk-button uk-button-success">Оставить</a>
                     
                 </div>
-                <span></span>
             </div>
         </div>
+        <script src="/static/js/uikit.min.js"></script>
+        <script src="/static/js/uikit-icons.min.js"></script>
 {% endblock %}
