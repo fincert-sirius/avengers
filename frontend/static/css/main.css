@@ -2,6 +2,9 @@
 .uk-textarea {
 	transition: none;
 }
+html {
+	height: 100vh;
+}
 body {
 	font-size: 18px;
 }
