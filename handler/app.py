@@ -13,10 +13,14 @@ def handling(q):
     while True:
         domain = q.get()
         logging.info('Handling resource {}...'.format(domain))
-        # magic...
+
+        # begin magic
         time.sleep(15)
+        # end magic
+
         verdict = 0
         comment = 'Some notes'
+
         f = open('verdicts.json', mode='r')
         data = json.load(f)
         data[domain] = [verdict, comment]
@@ -45,7 +49,7 @@ handlingThread.start()
 
 #-----------------------------------------
 
-@app.route('/handle')
+@app.route('/add')
 def api():
     domain = request.args.get('domain')
     domainsQueue.put(domain)
