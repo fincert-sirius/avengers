@@ -6,14 +6,13 @@
 	<link rel="shortcut icon" href="/static/img/sova.png" type="image/png">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="/static/css/uikit.min.css">
-	<link rel="stylesheet" href="/static/css/main.css">
 </head>
 <body>
 	<div class="uk-container">
-	    <div class="uk-margin-top uk-animation-slide-top-medium">
-	        <a href="" class="uk-align-left">
-	            <img src="/static/img/sova.png" class="top-img-wigth" alt="">
-	        </a>
+	    <div class="row uk-margin-top uk-animation-slide-top-medium">
+	    	<div class="uk-width-1-6">
+	            <img src="/static/img/sova.png" class="top-img-wigth change-theme" alt="">    		
+	    	</div>
 
 	        <div class="uk-align-right uk-flex uk-flex-middle">
 	            <div class="uk-inline uk-margin-right">
@@ -32,8 +31,14 @@
 	</div>
 	{% block content %}{% endblock %}
 	
-	<script src="/static/js/uikit.min.js"></script>
-    <script src="/static/js/uikit-icons.min.js"></script>
+	<script
+		src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+		crossorigin="anonymous">
+	</script>
+	<script src="static/js/uikit.min.js"></script>
+    <script src="static/js/uikit-icons.min.js"></script>
+    <script src="static/js/theme.js"></script>
 
 </body>
 </html>
