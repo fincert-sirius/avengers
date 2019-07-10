@@ -31,6 +31,12 @@ a.no-underline:hover {
 	background: #D9534F;
 }
 .uk-button-success {
+	background: #458d34;
+	color: #fff;
+	border: 1px solid transparent;
+}
+.uk-button-success:hover,
+.uk-button-success:focus {
 	background: #47A447;
 	color: #fff;
 	border: 1px solid transparent;
