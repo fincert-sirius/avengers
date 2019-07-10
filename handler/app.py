@@ -1,6 +1,9 @@
+# Avengers web resources handle standalone microservice
+
 from flask import Flask, request
 from threading import Thread
 from queue import Queue
+from handler import Handler
 import logging
 import json
 import yaml
@@ -14,12 +17,10 @@ def handling(q):
         domain = q.get()
         logging.info('Handling resource {}...'.format(domain))
 
-        # begin magic
-        time.sleep(15)
-        # end magic
-
-        verdict = 0
-        comment = 'Some notes'
+        h = Handler()
+        result = h.handle(domain)
+        verdict = result[0]
+        comment = result[1]
 
         f = open('verdicts.json', mode='r')
         data = json.load(f)
