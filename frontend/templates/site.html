@@ -67,12 +67,13 @@
                             </li>
                         </ul>
                     </div>
+                    <form action="/ban/site/{{ site.id}}" method="POST">
                     <div class="uk-text-secondary uk-margin-bottom">
-                       <textarea name="" id="" class="uk-textarea uk-width-3-4" placeholder="Комментарий"></textarea>
+                       <textarea name="comment" id="" class="uk-textarea uk-width-3-4" placeholder="Комментарий"></textarea>
                     </div>
-                    <a href="" class="uk-button uk-button-danger">Заблокировать</a>
-                    <a href="" class="uk-button uk-button-success">Оставить</a>
-                    
+                    <a href="/ban/site/{{ site.id }}" class="uk-button uk-button-danger">Заблокировать</a>
+                    <a href="/clear/site/{{ site.id }}" class="uk-button uk-button-success">Оставить</a>
+                    </form>
                 </div>
             </div>
         </div>

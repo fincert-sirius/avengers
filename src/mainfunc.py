@@ -52,8 +52,8 @@ def web_archive(DOMAIN, FROM=2018, TO=2019):
             json_response = response.json()
             return json_response
         else:
-            return "Ошибка выполнения запроса:\n", "Http статус:", response.status_code, "(", response.reason, ")"
+            return ['', "Ошибка выполнения запроса:\n" + "Http статус:" + response.status_code + "(" + response.reason + ")"]
 
     except:
-        return "Запрос не удалось выполнить. Проверьте подключение к сети Интернет."
+        return ['', "Запрос не удалось выполнить. Проверьте подключение к сети Интернет."]
 
