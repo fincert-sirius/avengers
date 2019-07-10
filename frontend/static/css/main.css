@@ -40,3 +40,10 @@ ul.uk-subnav > li.uk-active > .badge-active-dark {
 .uk-button {
 	text-transform: none;
 }
+.change-theme {
+	cursor: pointer;
+}
+.uk-container .uk-button-text {
+	font-size: 26px;
+	text-transform: none;
+}

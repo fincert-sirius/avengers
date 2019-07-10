@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block content %}
-        <div class="uk-container">
+        <div class="uk-container uk-margin-top">
             <a href="/" class="uk-width-1-6 uk-text-large no-underline"><span uk-icon="icon: chevron-left"></span> Назад</a>
             <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-width-1-1uk-animation-slide-bottom-small">
                 <div class="top uk-flex uk-flex-bottom uk-margin-bottom">
-                    <h2 class="uk-width-1-3 uk-margin-remove-bottom">{{ site.url }}</h2>
+                    <a href="{{ site.url }}" class="uk-button uk-button-text uk-width-1-3 uk-margin-remove-bottom uk-text-lead">{{ site.url }}</a>
                     <span class="uk-text-muted"> / 03.07.2019</span>
                 </div>
                 <div class="uk-body">

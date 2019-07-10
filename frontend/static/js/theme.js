@@ -1,23 +1,23 @@
 (() => {
-	const main_theme = "/static/css/main.css";
 	const dark_theme = "/static/css/dark-theme.css";
+	const light_theme = "/static/css/light-theme.css";
 
 	const set_theme = (theme) => {
 		$(".theme").remove();
 
 		$("head").append(
-			`<link rel="stylesheet" href="${theme}" class="theme"/>`
+			`<link rel="stylesheet" href="${theme}" class="theme">`
 		);
 	};
 
 	const next_theme = (theme) => {
-		if (theme == main_theme)
+		if (theme == light_theme)
 			return dark_theme;
-		return main_theme;
+		return light_theme;
 	};
 
 	const get_curr_theme = () => {
-		return localStorage.getItem("theme") || main_theme;
+		return localStorage.getItem("theme") || light_theme;
 	};
 
 	const set_curr_theme = (theme) => {
