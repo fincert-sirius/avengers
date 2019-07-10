@@ -1,3 +1,10 @@
+.uk-input,
+.uk-textarea {
+	transition: none;
+}
+html {
+	height: 100vh;
+}
 body {
 	font-size: 18px;
 }
@@ -27,6 +34,12 @@ a.no-underline:hover {
 	background: #D9534F;
 }
 .uk-button-success {
+	background: #458d34;
+	color: #fff;
+	border: 1px solid transparent;
+}
+.uk-button-success:hover,
+.uk-button-success:focus {
 	background: #47A447;
 	color: #fff;
 	border: 1px solid transparent;
@@ -46,4 +59,7 @@ ul.uk-subnav > li.uk-active > .badge-active-dark {
 .uk-container .uk-button-text {
 	font-size: 26px;
 	text-transform: none;
+}
+textarea {
+	resize: none;
 }
