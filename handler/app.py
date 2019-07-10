@@ -19,12 +19,14 @@ def handling(q):
 
         h = Handler()
         result = h.handle(domain)
-        verdict = result[0]
-        comment = result[1]
+        info = {}
+        info['score'] = result[0]
+        info['comment'] = result[1]
+        info['time'] = int(time.time())
 
         f = open('verdicts.json', mode='r')
         data = json.load(f)
-        data[domain] = [verdict, comment]
+        data[domain] = info
         f.close()
         f = open('verdicts.json', mode='w')
         json.dump(data, f)
