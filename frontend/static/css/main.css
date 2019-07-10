@@ -1,3 +1,7 @@
+.uk-input,
+.uk-textarea {
+	transition: none;
+}
 body {
 	font-size: 18px;
 }
@@ -46,4 +50,7 @@ ul.uk-subnav > li.uk-active > .badge-active-dark {
 .uk-container .uk-button-text {
 	font-size: 26px;
 	text-transform: none;
+}
+textarea {
+	resize: none;
 }
