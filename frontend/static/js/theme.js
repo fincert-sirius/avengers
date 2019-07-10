@@ -4,10 +4,22 @@
 
 	const set_theme = (theme) => {
 		$(".theme").remove();
+		$("#sova-box").empty();
 
 		$("head").append(
 			`<link rel="stylesheet" href="${theme}" class="theme">`
 		);
+
+		if (theme == light_theme) {
+			$("#sova-box").append(
+				`<img src="/static/img/sova.png" class="top-img-wigth change-theme">`
+			);
+		}
+		else {
+			$("#sova-box").append(
+				`<img src="/static/img/sova_white.png" class="top-img-wigth change-theme">`
+			);
+		}
 	};
 
 	const next_theme = (theme) => {
@@ -31,6 +43,6 @@
 		set_theme(t);
 	};
 
-	$(".change-theme").click(change_theme);
+	$("#sova-box").on('click','.change-theme', change_theme);
 	set_theme(get_curr_theme());
 })();
