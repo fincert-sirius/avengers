@@ -42,18 +42,18 @@ def from_lst_to_db(path):
 def web_archive(DOMAIN, FROM=2018, TO=2019):
     # Готовим запрос.
     # Ключи web archive: [["urlkey","timestamp","original","mimetype","statuscode","digest","length"],
-    web_request = "https://web.archive.org/cdx/search/cdx?url=*.{}/*&output=json&from={}&to={}&fl=timestamp,original,length&limit=100".format(
+    web_request = "http://web.archive.org/cdx/search/cdx?url=*.{}/*&output=json&from={}&to={}&fl=timestamp,original,length&limit=100".format(
         DOMAIN, str(FROM), str(TO))
     response = None
-    try:
-        response = requests.get(web_request)
 
-        if response:
-            json_response = response.json()
-            return json_response
-        else:
-            return ['', "Ошибка выполнения запроса:\n" + "Http статус:" + response.status_code + "(" + response.reason + ")"]
+    response = requests.get(web_request)
 
-    except:
-        return ['', "Запрос не удалось выполнить. Проверьте подключение к сети Интернет."]
+    if response:
+        json_response = response.json()
+        return json_response
+    else:
+        return ['', "Ошибка выполнения запроса:\n" + "Http статус:" + response.status_code + "(" + response.reason + ")"]
+
+    #except:
+    #  return ['', "Запрос не удалось выполнить. Проверьте подключение к сети Интернет."]
 
