@@ -1,3 +1,4 @@
+html,
 body {
 	background: #19191B;
 }
@@ -44,6 +45,7 @@ ul.uk-subnav > li.uk-active > .badge-active-dark {
 a.uk-button-text {
 	color: #fff;
 }
-a.uk-button-text:hover {
+a.uk-button-text:hover,
+a.uk-button-text:focus {
 	color: #cecece;
 }
