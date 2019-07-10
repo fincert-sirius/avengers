@@ -1,5 +1,27 @@
 keywords:
-# Add some keywords for banks...
+    'sberbank':
+    'tinkoff':
+    'rocket':
+    'alphabank':
+    'alfabank':
+    'gazprombank':
+    'unicredit':
+    'unicreditbank':
+    'rosbank':
+    'uralsib':
+    'uralsibbank':
+    'сбербанк':
+    'тинькофф':
+    'альфабанк':
+    'альфа-банк':
+    'альфа'
+    'рокет':
+    'рокетбанк':
+    'рокет-банк':
+    'газпромбанк':
+    'юникредит':
+    'росбанк':
+    'уралсиб':
 
 # Generic suspicious
     'login': 25
@@ -149,6 +171,11 @@ susp_text:
 #Add some suspicious words that ask for logging in diff accounts
 multi-auth:
     "Sign in with Google":
+    "Sign in with Facebook":
+    "Sign in with Twitter":
+    "Sign in with GitHub":
+    "Войти через ВКонтакте":
+    "Войти через ГосУслуги":
 
 tlds:
     '.ga':
