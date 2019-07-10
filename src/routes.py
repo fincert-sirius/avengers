@@ -10,10 +10,17 @@ from src import forms
 @app.route("/")
 @login_required
 def index():
+    form = forms.AddSiteForm()
+    if form.validate_on_submit():
+        url = form.url.data
+        site = Site(url=url)
+        db.session.add(site)
+        db.session.commit()
+        return redirect(url_for('/add'))
     return render_template(
         "index.html",
         user=current_user,
-        sites=Site.query.all())
+        sites=Site.query.all(), form=form)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -57,17 +64,7 @@ def unauthorized():
 
 @app.route("/add", methods=["GET", "POST"])
 def add_site():
-    form = forms.AddSiteForm()
-    if form.validate_on_submit():
-        url = form.url.data
-        site = Site(url=url)
-
-        db.session.add(site)
-        db.session.commit()
-
-        return redirect(url_for("index"))
-
-    return render_template("add_site.html", user=current_user, form=form)
+    return redirect(url_for('index'))
 
 
 @app.route("/add_user", methods=["GET", "POST"])
@@ -103,8 +100,11 @@ def site_info(site_id):
 
 @app.route("/ban/site/<int:site_id>", methods=["GET", "POST"])
 def ban_site(site_id):
+    form = forms.AddComment()
+    comment = form.comment.data
     current_site = Site.query.filter(Site.id == site_id).first()
     current_site.status = 'BLOCKED'
+    current_site.comment = comment
     db.session.commit()
     return redirect(url_for('index'))
 

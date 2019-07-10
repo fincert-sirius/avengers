@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired
+from wtforms.widgets import TextArea
 from wtforms import StringField, PasswordField
 from wtforms.validators import DataRequired
 
@@ -16,3 +17,6 @@ class AddUserForm(FlaskForm):
 
 class UploadSitesExcel(FlaskForm):
 	excel = FileField('excel', validators=[FileRequired()])
+
+class AddComment(FlaskForm):
+	comment = StringField(u'Comment',widget=TextArea())
