@@ -1,5 +1,6 @@
 from app import app
 import mainfunc
+import requests
 
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, login_required, current_user, logout_user
@@ -17,8 +18,10 @@ def index():
         site = Site(url=url)
         #existing_site =
         if Site.query.filter(Site.url == url).one_or_none() is None:
+            requests.get('http://127.0.0.1:5001/add?domain={}'.format(url))
             db.session.add(site)
             db.session.commit()
+
         else:
             return render_template(
                 "index.html",
