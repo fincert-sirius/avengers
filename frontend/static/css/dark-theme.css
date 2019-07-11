@@ -2,18 +2,15 @@ html,
 body {
 	background: #19191B;
 }
-.uk-container {
-	background: #19191B;
-}
 h2 {
 	color: #FFF;
 }
 .uk-card {
 	color: #FFF !important;
-	background: #28282A;
+	background: #18181A;
 }
 .uk-card-default {
-  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.08);
+	box-shadow: 0 3px 10px rgba(255, 255, 255, 0.08);
 }
 .uk-text-secondary {
 	color: #FFF !important;

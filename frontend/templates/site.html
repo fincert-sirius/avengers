@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-        <div class="uk-container uk-margin-top">
+        <div class="uk-container uk-margin-top uk-margin-bottom">
             <a href="/" class="uk-width-1-6 uk-text-large no-underline"><span uk-icon="icon: chevron-left"></span> Назад</a>
             <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-width-1-1uk-animation-slide-bottom-small">
                 <div class="top uk-flex uk-flex-bottom uk-margin-bottom">
@@ -32,9 +32,6 @@
                             <li><a href="#">Скриншоты</a></li>
                         </ul>
                         <ul class="uk-switcher uk-margin">
-
-
-
                             <li class="uk-active">
                                 <ul class="uk-list uk-list-striped">
                                     {% if site.status.name == 'PROCESSING' %}
@@ -48,7 +45,6 @@
                                     {% endif %}
                                 </ul>
                             </li>
-
 
                             <li>
                                 <form class="uk-form-horizontal">
@@ -74,23 +70,23 @@
                                 </ul>
                             </li>
                             {% if site.status.name == 'PROCESSING' %}
-                                    <li>
-                                    Данная информация пока недоступна. Вы можете проверить сайт вручную либо дождаться проверки системой.
-                                    </li>
+                                <li>
+                                Данная информация пока недоступна. Вы можете проверить сайт вручную либо дождаться проверки системой.
+                                </li>
 
                             {% else %}
-                                    <li>
-                                    сюда скриншоты сайта
-                                    </li>
+                                <li>
+                                сюда скриншоты сайта
+                                </li>
                             {% endif %}
                         </ul>
                     </div>
                     <form action="/ban/site/{{ site.id}}" method="POST">
-                    <div class="uk-text-secondary uk-margin-bottom">
-                       <textarea name="comment" id="" class="uk-textarea uk-width-3-4" placeholder="Комментарий"></textarea>
-                    </div>
-                    <input type="submit" value="Заблокировать" class="uk-button uk-button-danger"></input>
-                    <a href="/clear/site/{{ site.id }}" class="uk-button uk-button-success">Оставить</a>
+                        <div class="uk-text-secondary uk-margin-bottom">
+                           <textarea name="comment" id="" class="uk-textarea uk-width-3-4" placeholder="Комментарий"></textarea>
+                        </div>
+                        <input type="submit" value="Заблокировать" class="uk-button uk-button-danger">
+                        <a href="/clear/site/{{ site.id }}" class="uk-button uk-button-success">Оставить</a>
                     </form>
                 </div>
             </div>
