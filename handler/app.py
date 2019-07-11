@@ -33,6 +33,8 @@ def handling(q):
         json.dump(data, f)
         f.close()
 
+        logging.info('Handling was completed.')
+
 
 #----------------------------------------
 
@@ -65,11 +67,16 @@ def api():
 
 @app.route('/results')
 def results():
-    with open('verdicts.json', mode='r') as f:
+    try:
+        f = open('verdicts.json', mode='r')
         data = json.load(f)
-        return json.dumps(data)
-    return 'error'
-
+        f.close()
+    except:
+        data = {}
+    f = open('verdicts.json', mode='w')
+    json.dump({}, f)
+    f.close()
+    return json.dumps(data)
 
 if __name__ == "__main__":
     app.run(host=config['host'], port=config['port'])
