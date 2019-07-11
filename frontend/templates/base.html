@@ -9,6 +9,22 @@
 	<link rel="stylesheet" href="/static/css/main.css">
 </head>
 <body>
+
+	<div id="modal-full" class="uk-modal-full uk-modal" uk-modal>
+	    <div class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle" uk-height-viewport>
+	        <button class="uk-modal-close-full" type="button" uk-close></button>
+	        <div class="js-upload uk-placeholder uk-text-center">
+	            <span uk-icon="icon: cloud-upload"></span>
+	            <span class="uk-text-middle">Перетащите файл в эту область или</span>
+	            <div uk-form-custom>
+	                <input type="file" multiple>
+	                <span class="uk-link">выберите через проводник</span>
+	            </div>
+		        <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
+	        </div>
+	    </div>
+	</div>
+
 	<div class="uk-container">
 	    <div class="uk-margin-top uk-animation-slide-top-medium uk-flex uk-flex-between">
 		    <div class="uk-width-1-6" id="sova-box">
@@ -25,6 +41,7 @@
 		            <div class="uk-inline">
 		                <span class="uk-form-icon" uk-icon="icon: search"></span>
 		                <input class="uk-input" name="url" placeholder="Добавить домен">
+		                <a class="uk-form-icon uk-form-icon-flip" href="#modal-full" uk-icon="icon: plus" uk-toggle></a>
 		            </div>
 				</form>
 	        </div>
@@ -43,6 +60,7 @@
 	<script src="/static/js/uikit.min.js"></script>
     <script src="/static/js/uikit-icons.min.js"></script>
     <script src="/static/js/theme.js"></script>
+    <script src="/static/js/upload.js"></script>
 
 </body>
 </html>
