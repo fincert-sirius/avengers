@@ -14,6 +14,12 @@
 		    <div class="uk-width-1-6" id="sova-box">
 	            <img src="/static/img/sova.png" class="top-img-wigth change-theme">
 	    	</div>
+			{% if error %}
+		<div class="uk-alert-danger uk-width-1-2 uk-align-center uk-padding-small uk-animation-slide-top-medium" uk-alert>
+		    <a class="uk-alert-close" uk-close></a>
+		    <span>{{ error }}</span>
+		</div>
+	{% endif %}
 
 	        <div class="uk-width-auto uk-flex uk-flex-middle">
 	            <div class="uk-inline uk-margin-right">
@@ -21,7 +27,9 @@
 	                <a href="/logout" class="uk-button-link">Выйти</a>
 	            </div>
 
-	            <form action="/add" method="post">
+	            <form action="/" method="post">
+								    {{ form.csrf_token }}
+
 		            <div class="uk-inline">
 		                <span class="uk-form-icon" uk-icon="icon: search"></span>
 		                <input class="uk-input" name="url" placeholder="Добавить домен">
