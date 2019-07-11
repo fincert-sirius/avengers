@@ -1,5 +1,5 @@
 import requests
-from page import Page
+from src.page import Page
 
 class Page_getter:
 	def get_page(self, url):

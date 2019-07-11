@@ -1,33 +1,21 @@
 from src.rules import domain
 from src.rules import html
 from collections import namedtuple
-
-# All rules that will be checked
-default_rules = [
-	domain.Susp_ending(),
-	domain.Susp_words(),
-	domain.Keywords(),
-	domain.Check_minus(),
-	domain.Many_subdomains(),
-	html.Check_susp_title(),
-	html.Check_susp_text(),
-	html.Check_2_auth(),
-	html.Check_pass_input(),
-	html.Check_multi_auth(),
-	html.Check_hid_input()
-]
+import inspect
+from src import page_getter
 
 Cause = namedtuple('Cause', ['rule', 'score'])
 
 class Scorer:
-	def __init__(self, rules):
+	def __init__(self, rules=[]):
 		self.rules = rules
 
 	def get_score(self, domain):
 		result = Result()
+		page = page_getter.page_getter.get_page(domain)
 
 		for rule in self.rules:
-			score = rule.get_score(domain)
+			score = rule.get_score(page)
 			if score != 0:
 				result.add(rule, score)
 
@@ -52,4 +40,15 @@ class Result:
 	def get_causes(self):
 		return self.causes
 
-default_scorer = Scorer(rules = default_rules)
+class Autoload_scorer(Scorer):
+	def __init__(self, *modules):
+		super().__init__()
+		for module in modules:
+			for key, value in module.__dict__.items():
+				if key.startswith('_') or key.startswith('__'):
+					continue
+				if inspect.isclass(value):
+					self.rules.append(value())
+
+
+default_scorer = Autoload_scorer(domain, html)

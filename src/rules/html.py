@@ -1,4 +1,3 @@
-from bs4 import BeautifulSoup
 import yaml
 
 with open('config/suspicious.yaml', 'r') as f:
