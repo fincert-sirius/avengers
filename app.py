@@ -24,6 +24,7 @@ login_manager.init_app(app)
 
 from src import models
 from src import routes
+from src import cli
 
 @login_manager.user_loader
 def load_user(user_id):
