@@ -21,7 +21,8 @@ def handling(q):
         result = h.handle(domain)
         info = {}
         info['score'] = result[0]
-        info['comment'] = result[1]
+        info['category'] = result[1]
+        info['comment'] = result[2]
         info['time'] = int(time.time())
 
         f = open('verdicts.json', mode='r')
