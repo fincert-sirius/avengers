@@ -5,6 +5,7 @@
 	const set_theme = (theme) => {
 		$(".theme").remove();
 		$("#sova-box").empty();
+		$("footer").empty();
 
 		$("head").append(
 			`<link rel="stylesheet" href="${theme}" class="theme">`
@@ -14,11 +15,25 @@
 			$("#sova-box").append(
 				`<img src="/static/img/sova.png" class="top-img-wigth change-theme">`
 			);
+			$("footer").append(`
+				<div class="uk-container">
+					<div class="uk-section uk-section-muted uk-section-xsmall uk-padding-small">
+				        <p>О нас</p>
+					</div>
+				</div>
+			`);
 		}
 		else {
 			$("#sova-box").append(
 				`<img src="/static/img/sova_white.png" class="top-img-wigth change-theme">`
 			);
+			$("footer").append(`
+				<div class="uk-container">
+					<div class="uk-section uk-section-secondary uk-light uk-section-xsmall uk-padding-small">
+				        <a href="" class="uk-link">О нас</a>
+					</div>
+				</div>
+			`);
 		}
 	};
 
