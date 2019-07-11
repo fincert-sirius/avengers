@@ -16,7 +16,9 @@ def index():
         site = Site(url=url)
         db.session.add(site)
         db.session.commit()
-        return redirect(url_for('/add'))
+        #return render_template("index.html", user=current_user, sites=Site.query.all(), form=form)
+        return redirect(url_for('/'))
+
     return render_template(
         "index.html",
         user=current_user,
@@ -117,5 +119,8 @@ def clear_site(site_id):
     return redirect(url_for('index'))
 
 
+@app.route("/ban404")
+def opa():
+    return render_template("ban.html")
 #@app.route("/upload_file")
 #def upload(path)

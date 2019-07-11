@@ -32,13 +32,24 @@
                             <li><a href="#">Скриншоты</a></li>
                         </ul>
                         <ul class="uk-switcher uk-margin">
+
+
+
                             <li class="uk-active">
                                 <ul class="uk-list uk-list-striped">
+                                    {% if site.status.name == 'PROCESSING' %}
+                                    <li> Данная информация пока недоступна. Вы можете проверить сайт вручную либо дождаться проверки системой.</li>
+
+                                    {% else %}
                                     {% for who in site.whois %}
+
                                     <li>{{ who }}</li>
                                     {% endfor %}
+                                    {% endif %}
                                 </ul>
                             </li>
+
+
                             <li>
                                 <form class="uk-form-horizontal">
                                     <div class="uk-margin uk-width-1-2">
@@ -58,13 +69,20 @@
 
                                 <ul class="uk-list uk-list-striped">
                                     {% for web in webarchive %}
-                                    <li>Date:{{ web[0][0:4] }}.{{ web[0][4:6] }}.{{ web[0][6:8] }}  Url: {{ web[1][7:] }}  HTML Lenght: {{ web[2] }} </li>
+                                    <li>{{ web }}</li>
                                     {% endfor %}
                                 </ul>
                             </li>
-                            <li>
-                                сюда скриншоты сайта
-                            </li>
+                            {% if site.status.name == 'PROCESSING' %}
+                                    <li>
+                                    Данная информация пока недоступна. Вы можете проверить сайт вручную либо дождаться проверки системой.
+                                    </li>
+
+                            {% else %}
+                                    <li>
+                                    сюда скриншоты сайта
+                                    </li>
+                            {% endif %}
                         </ul>
                     </div>
                     <form action="/ban/site/{{ site.id}}" method="POST">
