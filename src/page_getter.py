@@ -7,7 +7,7 @@ class Page_getter:
 
 class Page_getter_requests(Page_getter):
 	def get_page(self, url):
-		html = requests.get(url)
+		html = requests.get(url).content
 		
 		return Page(
 			url = url,
