@@ -13,15 +13,16 @@
 	<div id="modal-full" class="uk-modal-full uk-modal" uk-modal>
 	    <div class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle" uk-height-viewport>
 	        <button class="uk-modal-close-full" type="button" uk-close></button>
-	        <div class="js-upload uk-placeholder uk-text-center">
-	            <span uk-icon="icon: cloud-upload"></span>
-	            <span class="uk-text-middle">Перетащите файл в эту область или</span>
-	            <div uk-form-custom>
-	                <input type="file" multiple>
-	                <span class="uk-link">выберите через проводник</span>
+	        <form action="/upload_file" method="POST" enctype=multipart/form-data>
+	        	{{ form.csrf_token }}
+		        <div class="uk-margin" uk-margin>
+	                <div uk-form-custom="target: true">
+	                    <input type="file">
+	                    <input class="uk-input uk-form-width-medium" type="text" placeholder="Выберите файл" disabled>
+	                </div>
+	                <button class="uk-button uk-button-default">Отправить</button>
 	            </div>
-		        <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
-	        </div>
+            </form>
 	    </div>
 	</div>
 
