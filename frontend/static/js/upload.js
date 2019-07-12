@@ -2,8 +2,8 @@ var bar = document.getElementById('js-progressbar');
 
 UIkit.upload('.js-upload', {
 
-    url: '',
-    multiple: true,
+    url: 'http://127.0.0.1:5000//upload_file',
+    multiple: false,
 
     beforeSend: function () {
         console.log('beforeSend', arguments);

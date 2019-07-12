@@ -43,21 +43,19 @@
 	                <a href="/logout" class="uk-button-link">Выйти</a>
 	            </div>
 
-	            <form action="/" method="post">
-								    {{ form.csrf_token }}
 
 		            <div class="uk-inline">
 		                <span class="uk-form-icon" uk-icon="icon: search"></span>
 		                <input class="uk-input" name="url" placeholder="Добавить домен">
 		                <a class="uk-form-icon uk-form-icon-flip" href="#modal-full" uk-icon="icon: plus" uk-toggle></a>
 		            </div>
-				</form>
 	        </div>
 	    </div>
 	</div>
 	{% block content %}{% endblock %}
 
 	<footer>
+        <a href
 	</footer>
 
 	<script

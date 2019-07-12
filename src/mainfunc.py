@@ -1,4 +1,5 @@
-import  requests, json
+import requests
+ALLOWED_EXTENSIONS = ('json', 'xml', 'txt', 'csv')
 
 def from_txt_to_db(path):
     with open(path,'r') as f:
@@ -57,3 +58,7 @@ def web_archive(DOMAIN, FROM=2018, TO=2019):
     except:
       return ['', "Запрос не удалось выполнить. Проверьте подключение к сети Интернет."]
 
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
