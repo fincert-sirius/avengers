@@ -32,11 +32,9 @@
 					{% endif %}
 							<ul class="uk-subnav uk-subnav-divider uk-margin-remove-top">
 			                    <a href="/site/{{ site.id }}" class="uk-text-large uk-text-middle">{{ site.url }}</a>
-			                    <li>{{ type }}</li>
 								{% if site.comment != None %}
 			                    <li>{{ site.comment }}</li>
 								{% endif %}
-			                    <li>{{ date }}</li>
 			                </ul>
 			            </div>
 	            {% endfor %}

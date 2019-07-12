@@ -13,7 +13,7 @@
 	<div id="modal-full" class="uk-modal-full uk-modal" uk-modal>
 	    <div class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle" uk-height-viewport>
 	        <button class="uk-modal-close-full" type="button" uk-close></button>
-	        <form action="/upload_file" method="POST" enctype=multipart/form-data>
+	        <form method="POST" enctype="multipart/form-data">
 	        	{{ form.csrf_token }}
 		        <div class="uk-margin" uk-margin>
 	                <div uk-form-custom="target: true">
@@ -44,19 +44,21 @@
 	                <a href="/logout" class="uk-button-link">Выйти</a>
 	            </div>
 
+	            <form action="/" method="post">
+								    {{ form.csrf_token }}
 
 		            <div class="uk-inline">
 		                <span class="uk-form-icon" uk-icon="icon: search"></span>
 		                <input class="uk-input" name="url" placeholder="Добавить домен">
 		                <a class="uk-form-icon uk-form-icon-flip" href="#modal-full" uk-icon="icon: plus" uk-toggle></a>
 		            </div>
+				</form>
 	        </div>
 	    </div>
 	</div>
 	{% block content %}{% endblock %}
 
 	<footer>
-        <a href
 	</footer>
 
 	<script
