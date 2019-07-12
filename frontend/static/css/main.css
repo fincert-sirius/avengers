@@ -63,3 +63,6 @@ ul.uk-subnav > li.uk-active > .badge-active-dark {
 textarea {
 	resize: none;
 }
+.wrapper {
+  min-height: calc(100vh - 84px);
+}

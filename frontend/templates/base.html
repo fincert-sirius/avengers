@@ -9,54 +9,53 @@
 	<link rel="stylesheet" href="/static/css/main.css">
 </head>
 <body>
-
-	<div id="modal-full" class="uk-modal-full uk-modal" uk-modal>
-	    <div class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle" uk-height-viewport>
-	        <button class="uk-modal-close-full" type="button" uk-close></button>
-	        <form method="POST" enctype="multipart/form-data">
-	        	{{ form_file.csrf_token }}
-		        <div class="uk-margin" uk-margin>
-	                <div uk-form-custom="target: true">
-	                    <input type="file">
-	                    <input class="uk-input uk-form-width-medium" type="text" placeholder="Выберите файл" disabled>
-	                </div>
-	                <button class="uk-button uk-button-default">Отправить</button>
-	            </div>
-            </form>
-	    </div>
-	</div>
-
-	<div class="uk-container">
-	    <div class="uk-margin-top uk-animation-slide-top-medium uk-flex uk-flex-between">
-		    <div class="uk-width-1-6" id="sova-box">
-	            <img src="/static/img/sova.png" class="top-img-wigth change-theme">
-	    	</div>
-			{% if error %}
-		<div class="uk-alert-danger uk-width-1-2 uk-align-center uk-padding-small uk-animation-slide-top-medium" uk-alert>
-		    <a class="uk-alert-close" uk-close></a>
-		    <span>{{ error }}</span>
-		</div>
-	{% endif %}
-
-	        <div class="uk-width-auto uk-flex uk-flex-middle">
-	            <div class="uk-inline uk-margin-right">
-	                <span class="uk-text-secondary uk-margin-small-right">{{ user.username }}</span>
-	                <a href="/logout" class="uk-button-link">Выйти</a>
-	            </div>
-
-	            <form action="/" method="post">
-								    {{ form_search.csrf_token }}
-
-		            <div class="uk-inline">
-		                <span class="uk-form-icon" uk-icon="icon: search"></span>
-		                <input class="uk-input" name="url" placeholder="Добавить домен">
-		                <a class="uk-form-icon uk-form-icon-flip" href="#modal-full" uk-icon="icon: plus" uk-toggle></a>
+	
+	<div class="wrapper">
+		<div id="modal-full" class="uk-modal-full uk-modal" uk-modal>
+		    <div class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle" uk-height-viewport>
+		        <button class="uk-modal-close-full" type="button" uk-close></button>
+		        <form action="/upload_file" method="POST" enctype=multipart/form-data>
+		        	{{ form.csrf_token }}
+			        <div class="uk-margin" uk-margin>
+		                <div uk-form-custom="target: true">
+		                    <input type="file">
+		                    <input class="uk-input uk-form-width-medium" type="text" placeholder="Выберите файл" disabled>
+		                </div>
+		                <button class="uk-button uk-button-default">Отправить</button>
 		            </div>
-				</form>
-	        </div>
-	    </div>
+	            </form>
+		    </div>
+		</div>
+
+		<div class="uk-container">
+		    <div class="uk-margin-top uk-animation-slide-top-medium uk-flex uk-flex-between">
+			    <div class="uk-width-1-6" id="sova-box">
+		            <img src="/static/img/sova.png" class="top-img-wigth change-theme">
+		    	</div>
+				{% if error %}
+			<div class="uk-alert-danger uk-width-1-2 uk-align-center uk-padding-small uk-animation-slide-top-medium" uk-alert>
+			    <a class="uk-alert-close" uk-close></a>
+			    <span>{{ error }}</span>
+			</div>
+		{% endif %}
+
+		        <div class="uk-width-auto uk-flex uk-flex-middle">
+		            <div class="uk-inline uk-margin-right">
+		                <span class="uk-text-secondary uk-margin-small-right">{{ user.username }}</span>
+		                <a href="/logout" class="uk-button-link">Выйти</a>
+		            </div>
+
+
+			            <div class="uk-inline">
+			                <span class="uk-form-icon" uk-icon="icon: search"></span>
+			                <input class="uk-input" name="url" placeholder="Добавить домен">
+			                <a class="uk-form-icon uk-form-icon-flip" href="#modal-full" uk-icon="icon: plus" uk-toggle></a>
+			            </div>
+		        </div>
+		    </div>
+		</div>
+		{% block content %}{% endblock %}
 	</div>
-	{% block content %}{% endblock %}
 
 	<footer>
 	</footer>
