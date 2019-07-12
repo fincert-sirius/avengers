@@ -17,8 +17,17 @@
 			);
 			$("footer").append(`
 				<div class="uk-section uk-section-muted uk-section-xsmall uk-padding-small">
-					<div class="uk-container">
-				        <a href="" class="uk-link">О нас</a>
+					<div class="uk-container uk-flex uk-flex-between uk-flex-bottom">
+						<div class="uk-flex uk-flex-column">
+					        <a href="" class="uk-link-muted">О нас</a>
+					        <div class="uk-inline">
+						        <span uk-icon="icon: github"></span>
+						        <a href="" class="uk-link-muted">GitHub</a>
+					        </div>
+						</div>
+						<div>
+							<p>&#169; Copyleft Sirius EC 2019</p>
+						</div>
 					</div>
 				</div>
 			`);
@@ -28,9 +37,18 @@
 				`<img src="/static/img/sova_white.png" class="top-img-wigth change-theme">`
 			);
 			$("footer").append(`
-				<div class="uk-section uk-section-secondary uk-light uk-section-xsmall uk-padding-small">
-			        <div class="uk-container">
-				        <a href="" class="uk-link">О нас</a>
+				<div class="uk-section uk-section-secondary uk-section-xsmall uk-padding-small">
+					<div class="uk-container uk-flex uk-flex-between uk-flex-bottom">
+						<div class="uk-flex uk-flex-column">
+					        <a href="" class="uk-link-muted">О нас</a>
+					        <div class="uk-inline">
+						        <span uk-icon="icon: github-alt"></span>
+						        <a href="" class="uk-link-muted">GitHub</a>
+					        </div>
+						</div>
+						<div>
+							<p>&#169; Copyleft Sirius EC 2019</p>
+						</div>
 					</div>
 				</div>
 			`);
