@@ -24,6 +24,8 @@ migrate = Migrate(app, db)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+ALLOWED_EXTENSIONS = set(['json', 'xml', 'txt', 'csv'])
+
 from src import models
 
 from src import routes

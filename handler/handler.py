@@ -6,4 +6,5 @@ class Handler():
         time.sleep(15)
         verdict = 0
         comment = 'Some notes'
-        return [verdict, comment]
+        category = 'lokhotron'
+        return [verdict, category, comment]
