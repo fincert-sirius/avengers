@@ -14,7 +14,7 @@
 	    <div class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle" uk-height-viewport>
 	        <button class="uk-modal-close-full" type="button" uk-close></button>
 	        <form method="POST" enctype="multipart/form-data">
-	        	{{ form.csrf_token }}
+	        	{{ form_file.csrf_token }}
 		        <div class="uk-margin" uk-margin>
 	                <div uk-form-custom="target: true">
 	                    <input type="file">
@@ -45,7 +45,7 @@
 	            </div>
 
 	            <form action="/" method="post">
-								    {{ form.csrf_token }}
+								    {{ form_search.csrf_token }}
 
 		            <div class="uk-inline">
 		                <span class="uk-form-icon" uk-icon="icon: search"></span>

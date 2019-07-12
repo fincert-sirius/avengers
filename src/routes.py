@@ -1,6 +1,6 @@
 from app import app
 import mainfunc
-import requests
+import requests, os
 
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, login_required, current_user, logout_user
@@ -12,6 +12,7 @@ import sqlalchemy
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
+    form_file = forms.UploadFile()
     form_search = forms.AddSiteForm()
     if form_search.validate_on_submit() and '.' in form_search.url.data:
         url = form_search.url.data
@@ -26,17 +27,25 @@ def index():
                 "index.html",
                 user=current_user,
                 sites=Site.query.all(),
-                form=form_search,
+                form_search=form_search,
+                form_file=form_file,
                 error='Данный URL уже есть в базе данных.'
                 )
 
         return redirect('/')
 
+    if form_file.validate_on_submit():
+        f = form_file.file_field.data
+        filename = f.filename
+        f.save(os.path.join(app.instance_path, filename))
+        return redirect(url_for('index'))
+
     return render_template(
         "index.html",
         user=current_user,
         sites=Site.query.all(),
-        form=form,
+        form_search=form_search,
+        form_file=form_file,
         error=None
     )
 
@@ -119,12 +128,14 @@ def upload_sites_excel():
 @app.route("/site/<int:site_id>", methods=["GET", "POST"])
 def site_info(site_id):
     form = forms.AddSiteForm()
+    form2= forms.UploadFile()
     current_site = Site.query.filter(Site.id == site_id).first()
     return render_template('site.html',
                            site=current_site,
                            user=current_user,
                            webarchive=mainfunc.web_archive(current_site.url)[1:],
-                           form=form
+                           form_search=form,
+                           form_file=form2
                            )
 
 @app.route("/ban/site/<int:site_id>", methods=["GET", "POST"])
