@@ -19,10 +19,10 @@
 				<div class="uk-section uk-section-muted uk-section-xsmall uk-padding-small">
 					<div class="uk-container uk-flex uk-flex-between uk-flex-bottom">
 						<div class="uk-flex uk-flex-column">
-					        <a href="" class="uk-link-muted">О нас</a>
+					        <a href="/about" class="uk-link-muted">О нас</a>
 					        <div class="uk-inline">
 						        <span uk-icon="icon: github"></span>
-						        <a href="" class="uk-link-muted">GitHub</a>
+						        <a href="https://github.com/fincert-sirius/avengers" class="uk-link-muted">GitHub</a>
 					        </div>
 						</div>
 						<div>
@@ -40,10 +40,10 @@
 				<div class="uk-section uk-section-secondary uk-section-xsmall uk-padding-small">
 					<div class="uk-container uk-flex uk-flex-between uk-flex-bottom">
 						<div class="uk-flex uk-flex-column">
-					        <a href="" class="uk-link-muted">О нас</a>
+					        <a href="/about" class="uk-link-muted">О нас</a>
 					        <div class="uk-inline">
 						        <span uk-icon="icon: github-alt"></span>
-						        <a href="" class="uk-link-muted">GitHub</a>
+						        <a href="https://github.com/fincert-sirius/avengers" class="uk-link-muted">GitHub</a>
 					        </div>
 						</div>
 						<div>
