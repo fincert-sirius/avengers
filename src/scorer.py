@@ -41,8 +41,12 @@ class Result:
 		return self.causes
 
 	def __str__(self):
-		s = str(self.get_sum())
-		
+		s = str(self.get_sum()) + '\n'
+		for cause in self.causes:
+			s += str(cause) + '\n'
+
+		return s
+
 
 class Autoload_scorer(Scorer):
 	def __init__(self, *modules):

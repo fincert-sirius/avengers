@@ -138,13 +138,13 @@ keywords:
 
 #Add some suspicious words both in English and Russian
 susp_text:
-    'Forgot password': 50
-    'Забыли пароль': 50
+    'Forgot password': 25
+    'Забыли пароль': 25
 
 #Add some suspicious words connected with 2-step verification
 2FA:
-    "2-Step Verification": 20
-    "verification code was just sent to your number": 20
+    "2-Step Verification": 15
+    "verification code was just sent to your number": 15
 
 #Add some suspicious words that ask for logging in diff accounts
 multi-auth:

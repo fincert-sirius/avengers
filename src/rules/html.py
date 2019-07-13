@@ -60,7 +60,7 @@ class Check_pass_input:
 		pass_input = list(page.get_html().find_all('input', type='password'))
 		if len(pass_input) == 0:
 			return 0
-		return 10
+		return suspicious['pass_input']['input']
 
 	def get_description(self):
 		return """
@@ -71,7 +71,8 @@ class Check_hid_input:
 	def get_score(self, page):
 		attr = page.get_html().find_all('input', hidden='True')
 		if len(attr) != 0:
-			return 5
+			return suspicious['pass_input']['hid_input']
+		return 0
 
 	def get_description(self):
 		return """
@@ -88,7 +89,7 @@ class Check_multi_auth:
 				col += 1
 
 		if col >= 3:
-			return 20
+			return suspicious['multi-auth']['has_multi-auth']
 
 		return 0
 
@@ -97,3 +98,26 @@ class Check_multi_auth:
 			It determines if the page is attempting to phish for
 			multiple email services at once.
 		"""
+
+class Check_time:
+	def get_score(self, page):
+		html_text = page.get_html().get_text()
+		for word in html_text:
+			col = 0
+			for letter in word:
+				if letter == ':' or (letter >= '0' and letter <= '9'):
+					col += 1
+					continue
+				else:
+					break
+
+			if col == len(word):
+				return suspicious['check_time']['has_timer']
+
+		return 0
+
+		def get_description(self):
+			return """
+				It determines if the page has a time-date counter.
+			"""
+
