@@ -14,6 +14,9 @@ body {
 .top-img-wigth {
 	width: 30%;
 }
+.uk-badge {
+	padding: 6px;
+}
 .badge-green {
 	background: #32d296;
 }
