@@ -185,3 +185,7 @@ def clear_site(site_id):
 @app.route("/ban404")
 def opa():
     return render_template("ban.html")
+
+@app.route("/about", methods=['GET'])
+def about():
+    return render_template('about.html')
