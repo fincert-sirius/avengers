@@ -162,6 +162,9 @@ keywords:
 susp_text:
     'Forgot password': 25
     'Забыли пароль': 25
+    'Банк': 15
+    'Bank': 15
+    
 
 #Add some suspicious words connected with 2-step verification
 2FA:
@@ -183,7 +186,7 @@ pass_input:
     "hid_input": 5
 
 check_time:
-    "has_timer": 10
+    "has_timer": 40
 
 tlds:
     '.ga':

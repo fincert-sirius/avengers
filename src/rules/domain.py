@@ -1,6 +1,7 @@
 import yaml
 import re
 from tld import get_tld
+from Levenshtein import distance
 
 with open('config/suspicious.yaml', 'r') as f:
 		_suspicious = yaml.safe_load(f)
@@ -64,22 +65,22 @@ class Keywords:
 		"""
 
 
-# class Lev_dist:
-# 	def get_score(self, page):
-# 		score = 0
-# 		domain = page.get_domain()
+class Lev_dist:
+	def get_score(self, page):
+		score = 0
+		domain = page.get_domain()
 
-# 		for key in [k for (k,s) in _suspicious['keywords'].items() if s >= 70]:
-# 			for word in [w for w in words_in_domain if w not in ['email', 'mail', 'cloud']]:
-# 				if distance(str(word), str(key)) == 1:
-# 					score += 70
-# 		return score
+		for key in [k for (k,s) in _suspicious['keywords'].items() if s >= 70]:
+			for word in [w for w in words_in_domain if w not in ['email', 'mail', 'cloud']]:
+				if distance(str(word), str(key)) == 1:
+					score += 70
+		return score
 
-# 	def get_description(self):
-# 		return """
-# 			Подсчет расстояния Левенштейна для проверяемого 
-# 			и предположительного доменов.
-# 		"""
+	def get_description(self):
+		return """
+			Подсчет расстояния Левенштейна для проверяемого 
+			и предположительного доменов.
+		"""
 
 
 class Check_minus:
