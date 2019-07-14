@@ -1,11 +1,16 @@
 
 {% extends "base.html" %}
 
+{% block title %}
+Upload file
+{% endblock %}
 {% block content %}
-	<form action="/add" method="POST">
+
+
+	<form action="/upload_file" method="POST"  enctype="multipart/form-data">
 		{{ form.csrf_token }}
 		<p>
-			{{ form.url.label }} {{ form.url }}
+			{{ form.file_field }}
 		</p>
 	
 		<p>
@@ -14,5 +19,4 @@
 	</form>
 
 {% endblock %}
-
 

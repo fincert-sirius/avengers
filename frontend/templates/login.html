@@ -1,29 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru"
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Login</title>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="/static/img/sova.png" type="image/png">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/static/css/uikit.min.css">
+	<link rel="stylesheet" href="/static/css/main.css">
 </head>
 <body>
-	<form action="/login" method="POST">
-		{% if error %}
-			<p>
-				{{ error }}
-			</p>
-		{% endif %}
+	{% if error %}
+		<div class="uk-alert-danger uk-width-1-2 uk-align-center uk-padding-small uk-animation-slide-top-medium" uk-alert>
+		    <a class="uk-alert-close" uk-close></a>
+		    <span>{{ error }}</span>
+		</div>
+	{% endif %}
 
-		{{ form.csrf_token }}
-		<p>
-			{{ form.login.label }} {{ form.login }}
-		</p>
-		
-		<p>
-			{{ form.password.label }} {{ form.password }}
-		</p>
-		
-		<p>
-			<input type="submit">
-		</p>
-	</form>
+	<div class="uk-container">
+	    <div class="uk-align-center uk-width-1-2 uk-margin-large-top">
+	        <img src="static/img/color_logo.jpg" class="uk-align-center uk-width-3-4 uk-animation-slide-top-medium" alt="">
+	        <form action="/login" method="POST">
+			    {{ form.csrf_token }}
+	            <input name="login" type="text" class="uk-input uk-margin-small-bottom uk-animation-slide-top-small" placeholder="Логин">
+	            <input name="password" type="password" class="uk-input uk-margin-bottom uk-animation-slide-top-small" placeholder="Пароль">
+	            <label class="uk-animation-slide-top-small">
+	                <input class="uk-checkbox uk-margin-small-right uk-animation-slide-top-small" type="checkbox">
+	                Запомнить пароль
+	            </label>
+	            <input class="uk-button uk-button-primary uk-align-right uk-animation-slide-top-small" type="submit" value="Войти"></a>
+	        </form>
+	    </div>
+	</div>
+    <script src="static/js/uikit.min.js"></script>
+    <script src="static/js/uikit-icons.min.js"></script>
+
 </body>
 </html>
+
+

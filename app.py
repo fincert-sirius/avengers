@@ -3,7 +3,10 @@ from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
-from sys import stdout
+from sys import stdout, path
+
+path.insert(0, path[0] + '\\src')
+
 
 def log(str):
 	print(str, file=stdout)
@@ -11,8 +14,7 @@ def log(str):
 app = Flask(
 	__name__,
 	template_folder="frontend/templates",
-	static_folder="frontend/static",
-)
+	static_folder="frontend/static",)
 
 app.config.from_object(Config)
 
@@ -22,10 +24,19 @@ migrate = Migrate(app, db)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+ALLOWED_EXTENSIONS = set(['json', 'xml', 'txt', 'csv'])
+
 from src import models
+
 from src import routes
 from src import cli
 
 @login_manager.user_loader
 def load_user(user_id):
     return models.User.query.get(user_id)
+
+
+
+
+if __name__ == '__main__':
+    app.run(port=8080, host='127.0.0.1', debug=True)

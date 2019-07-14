@@ -1,0 +1,68 @@
+.uk-input,
+.uk-textarea {
+	transition: none;
+}
+html {
+	height: 100vh;
+}
+body {
+	font-size: 18px;
+}
+.top h2 {
+	word-break: break-all;
+}
+.top-img-wigth {
+	width: 30%;
+}
+.badge-green {
+	background: #32d296;
+}
+.badge-red {
+	background: #f0506e;
+}
+.badge-grey {
+	background: #ccc;
+}
+.uk-container .uk-button {
+	text-transform: capitalize;
+	font-size: 15px;
+}
+a.no-underline:hover {
+	text-decoration: none;
+}
+.uk-button-danger {
+	background: #D9534F;
+}
+.uk-button-success {
+	background: #458d34;
+	color: #fff;
+	border: 1px solid transparent;
+}
+.uk-button-success:hover,
+.uk-button-success:focus {
+	background: #47A447;
+	color: #fff;
+	border: 1px solid transparent;
+}
+ul.uk-subnav > li.uk-active > .badge-active-grey {
+	background: #ccc;
+}
+ul.uk-subnav > li.uk-active > .badge-active-dark {
+	background: #222;
+}
+.uk-button {
+	text-transform: none;
+}
+.change-theme {
+	cursor: pointer;
+}
+.uk-container .uk-button-text {
+	font-size: 26px;
+	text-transform: none;
+}
+textarea {
+	resize: none;
+}
+.wrapper {
+  min-height: calc(100vh - 84px);
+}

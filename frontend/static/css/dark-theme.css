@@ -1,0 +1,48 @@
+html,
+body {
+	background: #19191B;
+}
+h2 {
+	color: #FFF;
+}
+.uk-card {
+	color: #FFF !important;
+	background: #18181A;
+}
+.uk-card-default {
+	box-shadow: 0 3px 10px rgba(255, 255, 255, 0.08);
+}
+.uk-text-secondary {
+	color: #FFF !important;
+}
+.uk-list-striped > li:nth-of-type(odd) {
+    background: #555;
+}
+.uk-input,
+.uk-textarea {
+	background: #19191B;
+	border: 1px solid #b0b0b0;
+}
+.uk-input:focus,
+.uk-textarea:focus {
+	background: #3d3d40;
+}
+ul.uk-subnav > li.uk-active > .badge-active-grey {
+	background: #ccc;
+}
+ul.uk-subnav > li.uk-active > .badge-active-dark {
+	background: #111;
+}
+.uk-tab > li.uk-active > a {
+	color: #fff;
+}
+.uk-form-label {
+	color: #fff;
+}
+a.uk-button-text {
+	color: #fff;
+}
+a.uk-button-text:hover,
+a.uk-button-text:focus {
+	color: #cecece;
+}

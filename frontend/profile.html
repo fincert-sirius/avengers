@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Профиль</title>
+        <meta charset="utf-8">
+        <link rel="shortcut icon" href="img/sova.png" type="image/x-icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/uikit.min.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <div class="uk-container">
+            <div class="row uk-margin-top uk-animation-slide-top-medium">
+                <a href="" class="uk-align-left">
+                    <img src="img/sova.png" class="top-img-wigth" alt="">
+                </a>
+
+                <div class="uk-align-right uk-text-bottom">
+                    <div class="uk-inline uk-margin-right">
+                        <span class="uk-text-secondary uk-margin-small-right">Здравствуйте, {{ user.username }}</span>
+                        <a href="" class="uk-button-link">Выйти</a>
+                    </div>
+
+                    <div class="uk-inline">
+                        <span class="uk-form-icon" uk-icon="icon: search"></span>
+                        <input class="uk-input" placeholder="Добавить домен">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-container" uk-sortable="handle: .uk-card">
+            <div uk-filter="target: .js-filter">
+                <ul class="uk-subnav uk-subnav-pill uk-animation-slide-top-small">
+                    <li uk-filter-control><a href="#">Все</a></li>
+                    <li class="uk-active" uk-filter-control="[data-color='blue']"><a href="#">На рассмотрение</a></li>
+                    <li uk-filter-control="[data-color='grey']"><a class="badge-active-grey" href="#">На проверке системой</a></li>
+                    <li uk-filter-control="[data-color='dark']"><a class="badge-active-dark" href="#">Решение вынесено</a></li>
+                </ul>
+
+                <div class="js-filter uk-animation-slide-bottom-small">
+                    <div data-color="blue" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
+                        <div class="uk-badge uk-margin-right uk-margin-small-top"></div>
+                        <ul class="uk-subnav uk-subnav-divider uk-margin-remove-top">
+                            <a href="site.html" class="uk-text-large uk-text-middle">tinloff.ru</a>
+                            <li>2</li>
+                            <li>ЛБ</li>
+                            <li>03.07.2019</li>
+                        </ul>
+                    </div>
+                    <div data-color="grey" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
+                        <div class="uk-badge badge-grey uk-margin-right uk-margin-small-top"></div>
+                        <ul class="uk-subnav uk-subnav-divider uk-margin-remove-top">
+                            <a href="site.html" class="uk-text-large uk-text-middle">mink.ru</a>
+                            <li>4</li>
+                            <li>СК</li>
+                            <li>02.07.2019</li>
+                        </ul>
+                    </div>
+                    <div data-color="dark" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
+                        <div class="uk-badge badge-dark uk-margin-right uk-margin-small-top"></div>
+                        <ul class="uk-subnav uk-subnav-divider uk-margin-remove-top">
+                            <a href="site.html" class="uk-text-large uk-text-middle">alfa.bank.ru</a>
+                            <li>3</li>
+                            <li>ЛБ</li>
+                            <li>03.07.2019</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/uikit.min.js"></script>
+        <script src="js/uikit-icons.min.js"></script>
+    </body>
+</html>
