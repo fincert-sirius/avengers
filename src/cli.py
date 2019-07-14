@@ -18,4 +18,5 @@ def get_html(domain):
 @click.argument('domain')
 def screen(domain):
 	page = page_getter.page_getter.get_page(domain)
-	print(page.save_screenshot('screen.png'))
+	page.save_screenshot('screen.png')
+	print('Saved')

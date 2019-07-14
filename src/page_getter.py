@@ -21,6 +21,13 @@ class Page_getter_chrome(Page_getter):
 			host="localhost",
 			port=9222
 		)
+		chrome.Browser.setWindowBounds(
+			windowId=1,
+			bounds = {
+				'width': 1600,
+				'height': 900
+			}	
+		)
 
 		chrome.Page.enable()
 		chrome.Page.navigate(url=url)
