@@ -1,5 +1,5 @@
 import requests
-from src.page import Page
+from src.page import Page, Chrome_page
 import PyChromeDevTools
 
 class Page_getter:
@@ -26,7 +26,8 @@ class Page_getter_chrome(Page_getter):
 		chrome.Page.navigate(url=url)
 		chrome.wait_event("Page.loadEventFired", timeout=60)
 		id = chrome.DOM.getDocument()['result']['root']['nodeId']
-		return Page(
+		return Chrome_page(
+			chrome = chrome,
 			url = url,
 			html = chrome.DOM.getOuterHTML(nodeId=id)['result']['outerHTML']
 		)
