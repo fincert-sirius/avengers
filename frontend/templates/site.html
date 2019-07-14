@@ -5,6 +5,47 @@
 {% endblock %}
 
 {% block content %}
+        <div id="modal-example" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body">
+                <form action="/ban/site/{{ site.id}}" method="POST" class="uk-form-stacked uk-flex uk-flex-column">
+                    <h3>Выберите тип</h3>
+                    <!-- <label><input class="uk-radio" type="radio" name="site_type"> Лжебанк (рус)</label>
+                    <label><input class="uk-radio" type="radio" name="site_type"> Лжебанк (анг)</label>
+                    <label><input class="uk-radio" type="radio" name="site_type"> Опросник</label>
+                    <label><input class="uk-radio" type="radio" name="site_type"> C2C переводы</label>
+                    <label><input class="uk-radio" type="radio" name="site_type"> Лжесоциалка</label>
+                    <label><input class="uk-radio" type="radio" name="site_type"> Билетник</label>
+                    <label><input class="uk-radio" type="radio" name="site_type"> Лжемфо (анг)</label>
+                    <label><input class="uk-radio" type="radio" name="site_type"> Лжеломбард</label>
+                    <label><input class="uk-radio" type="radio" name="site_type"> Прочее (рус)</label>
+                    <label><input class="uk-radio" type="radio" name="site_type"> Прочее (анг)</label> -->
+
+                    <div class="uk-form-controls">
+                        <select class="uk-select" id="form-stacked-select" name="site_type">
+                            <option style="color: #fff;">Лжебанк (рус)</option>
+                            <option>Лжебанк (анг)</option>
+                            <option>Опросник</option>
+                            <option>C2C переводы</option>
+                            <option>Лжесоциалка</option>
+                            <option>Билетник</option>
+                            <option>Лжемфо (анг)</option>
+                            <option>Лжеломбард</option>
+                            <option>Прочее (рус)</option>
+                            <option>Прочее (анг)</option>
+                        </select>
+                    </div>
+
+                    <h3>Напишите комментарий</h3>
+                    <div class="uk-text-secondary">
+                       <textarea name="comment" id="" class="uk-textarea" placeholder="Комментарий"></textarea>
+                    </div>
+                    <p class="uk-text-right">
+                        <input type="submit" value="Заблокировать" class="uk-button uk-button-danger">
+                        <button class="uk-button uk-button-default uk-modal-close" type="button">Отмена</button>
+                    </p>
+                </form>
+            </div>
+        </div>
         <div class="uk-container uk-margin-top uk-margin-bottom">
             <a href="/" class="uk-width-1-6 uk-text-large no-underline"><span uk-icon="icon: chevron-left"></span> Назад</a>
             <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-width-1-1uk-animation-slide-bottom-small">
@@ -81,13 +122,24 @@
                             {% endif %}
                         </ul>
                     </div>
-                    <form action="/ban/site/{{ site.id}}" method="POST">
+                    <!-- <form action="/ban/site/{{ site.id}}" method="POST">
+                        <label><input class="uk-radio" type="radio" name="site_type"> Лжебанк (рус)</label>
+                        <label><input class="uk-radio" type="radio" name="site_type"> Лжебанк (анг)</label>
+                        <label><input class="uk-radio" type="radio" name="site_type"> Опросник</label>
+                        <label><input class="uk-radio" type="radio" name="site_type"> C2C переводы</label>
+                        <label><input class="uk-radio" type="radio" name="site_type"> Лжесоциалка</label>
+                        <label><input class="uk-radio" type="radio" name="site_type"> Билетник</label>
+                        <label><input class="uk-radio" type="radio" name="site_type"> Лжемфо (анг)</label>
+                        <label><input class="uk-radio" type="radio" name="site_type"> Лжеломбард</label>
+                        <label><input class="uk-radio" type="radio" name="site_type"> Прочее (рус)</label>
+                        <label><input class="uk-radio" type="radio" name="site_type"> Прочее (анг)</label>
                         <div class="uk-text-secondary uk-margin-bottom">
                            <textarea name="comment" id="" class="uk-textarea uk-width-3-4" placeholder="Комментарий"></textarea>
                         </div>
-                        <input type="submit" value="Заблокировать" class="uk-button uk-button-danger">
+                        <input type="submit" value="Заблокировать" class="uk-button uk-button-danger"> -->
+                        <a href="#modal-example" class="uk-button uk-button-danger" uk-toggle>Заблокировать</a>
                         <a href="/clear/site/{{ site.id }}" class="uk-button uk-button-success">Оставить</a>
-                    </form>
+                    <!-- </form> -->
                 </div>
             </div>
         </div>

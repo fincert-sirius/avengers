@@ -19,13 +19,22 @@ h2 {
     background: #555;
 }
 .uk-input,
-.uk-textarea {
+.uk-textarea,
+.uk-select {
 	background: #19191B;
 	border: 1px solid #b0b0b0;
 }
 .uk-input:focus,
-.uk-textarea:focus {
+.uk-textarea:focus,
+.uk-select:focus {
 	background: #3d3d40;
+}
+.uk-select,
+.uk-select:focus {
+	color: #FFF;
+}
+option {
+	color: #F00;
 }
 ul.uk-subnav > li.uk-active > .badge-active-grey {
 	background: #ccc;
@@ -45,4 +54,16 @@ a.uk-button-text {
 a.uk-button-text:hover,
 a.uk-button-text:focus {
 	color: #cecece;
+}
+.uk-modal-body {
+	background: #19191B;
+}
+.uk-modal-body h3 {
+	color: #FFF;
+}
+.uk-button-default {
+	color: #FFF;
+}
+.uk-button-default:hover {
+	color: #EEE;
 }
