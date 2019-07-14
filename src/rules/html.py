@@ -5,7 +5,8 @@ with open('config/suspicious.yaml', 'r') as f:
 
 class Check_susp_title:
 	def get_score(self, page):
-		title = page.title
+		title = page.get_html().title.string
+
 		if title.lstrip() == '':
 			return 0
 		
@@ -23,7 +24,7 @@ class Check_susp_title:
 class Check_susp_text:
 	def get_score(self, page):
 		text = suspicious['susp_text']
-		html_text = page.get_text()
+		html_text = page.get_html().get_text()
 		score = 0
 		for word in text:
 			if word in html_text:
@@ -40,7 +41,7 @@ class Check_susp_text:
 class Check_2_auth:
 	def get_score(self, page):
 		text = suspicious['2FA']
-		html_text = page.get_text()
+		html_text = page.get_html().get_text()
 		score = 0
 		for word in text:
 			if word in html_text:
@@ -56,10 +57,10 @@ class Check_2_auth:
 
 class Check_pass_input:
 	def get_score(self, page):
-		pass_input = page.input
-		if pass_input.lstrip() == '':
+		pass_input = list(page.get_html().find_all('input', type='password'))
+		if len(pass_input) == 0:
 			return 0
-		return 10
+		return suspicious['pass_input']['input']
 
 	def get_description(self):
 		return """
@@ -68,9 +69,10 @@ class Check_pass_input:
 
 class Check_hid_input:
 	def get_score(self, page):
-		attr = page.find_all(hidden='True')
+		attr = page.get_html().find_all('input', hidden='True')
 		if len(attr) != 0:
-			return 5
+			return suspicious['pass_input']['hid_input']
+		return 0
 
 	def get_description(self):
 		return """
@@ -80,14 +82,14 @@ class Check_hid_input:
 class Check_multi_auth:
 	def get_score(self, page):
 		text = suspicious['multi-auth']
-		html_text = page.get_text()
+		html_text = page.get_html().get_text()
 		col = 0
 		for word in text:
 			if word in html_text:
 				col += 1
 
 		if col >= 3:
-			return 20
+			return suspicious['multi-auth']['has_multi-auth']
 
 		return 0
 
@@ -96,3 +98,26 @@ class Check_multi_auth:
 			It determines if the page is attempting to phish for
 			multiple email services at once.
 		"""
+
+class Check_time:
+	def get_score(self, page):
+		html_text = page.get_html().get_text()
+		for word in html_text:
+			col = 0
+			for letter in word:
+				if letter == ':' or (letter >= '0' and letter <= '9'):
+					col += 1
+					continue
+				else:
+					break
+
+			if col == len(word):
+				return suspicious['check_time']['has_timer']
+
+		return 0
+
+		def get_description(self):
+			return """
+				It determines if the page has a time-date counter.
+			"""
+

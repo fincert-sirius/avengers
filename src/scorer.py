@@ -15,7 +15,7 @@ class Scorer:
 		page = page_getter.page_getter.get_page(domain)
 
 		for rule in self.rules:
-			score = rule.get_score(page)
+			score = rule.get_score(page) or 0
 			if score != 0:
 				result.add(rule, score)
 
@@ -39,6 +39,14 @@ class Result:
 
 	def get_causes(self):
 		return self.causes
+
+	def __str__(self):
+		s = str(self.get_sum()) + '\n'
+		for cause in self.causes:
+			s += str(cause) + '\n'
+
+		return s
+
 
 class Autoload_scorer(Scorer):
 	def __init__(self, *modules):
