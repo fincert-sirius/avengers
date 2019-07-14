@@ -170,12 +170,12 @@ susp_text:
 
 #Add some suspicious words that ask for logging in diff accounts
 multi-auth:
-    "Sign in with Google":
-    "Sign in with Facebook":
-    "Sign in with Twitter":
-    "Sign in with GitHub":
-    "Войти через ВКонтакте":
-    "Войти через ГосУслуги":
+    "Sign in with Google": 10
+    "Sign in with Facebook": 10
+    "Sign in with Twitter": 10
+    "Sign in with GitHub": 10
+    "Войти через ВКонтакте": 10
+    "Войти через ГосУслуги": 10
     "has_multi_auth": 20
 
 pass_input:
