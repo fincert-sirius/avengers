@@ -1,4 +1,28 @@
 keywords:
+    'sberbank': 80
+    'tinkoff': 80
+    'rocket': 45
+    'alphabank': 60
+    'alfabank': 60
+    'gazprombank': 55
+    'unicredit': 35
+    'unicreditbank': 35
+    'rosbank': 45
+    'uralsib': 45
+    'uralsibbank': 45
+    'сбербанк': 90
+    'тинькофф': 90
+    'альфабанк': 66
+    'альфа-банк': 66
+    'альфа': 66 
+    'рокет': 45
+    'рокетбанк': 45
+    'рокет-банк': 45
+    'газпромбанк': 55
+    'юникредит': 35
+    'росбанк': 50
+    'уралсиб': 50
+
 # Generic suspicious
     'login': 25
     'log-in': 25
@@ -133,6 +157,33 @@ keywords:
     # FR specific
     'suivi': 50
     'laposte': 50
+
+#Add some suspicious words both in English and Russian
+susp_text:
+    'Forgot password': 25
+    'Забыли пароль': 25
+
+#Add some suspicious words connected with 2-step verification
+2FA:
+    "2-Step Verification": 15
+    "verification code was just sent to your number": 15
+
+#Add some suspicious words that ask for logging in diff accounts
+multi-auth:
+    "Sign in with Google": 10
+    "Sign in with Facebook": 10
+    "Sign in with Twitter": 10
+    "Sign in with GitHub": 10
+    "Войти через ВКонтакте": 10
+    "Войти через ГосУслуги": 10
+    "has_multi_auth": 20
+
+pass_input:
+    "input": 10
+    "hid_input": 5
+
+check_time:
+    "has_timer": 10
 
 tlds:
     '.ga':
