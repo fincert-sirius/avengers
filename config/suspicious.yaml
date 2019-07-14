@@ -183,7 +183,7 @@ pass_input:
     "hid_input": 5
 
 check_time:
-    "has_timer": 
+    "has_timer": 10
 
 tlds:
     '.ga':
