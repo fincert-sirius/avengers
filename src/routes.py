@@ -14,14 +14,24 @@ import sqlalchemy
 def index():
     form_file = forms.UploadFile()
     form_search = forms.AddSiteForm()
-    if form_search.validate_on_submit() and '.' in form_search.url.data:
-        url = form_search.url.data
-        site = Site(url=url)
-        if Site.query.filter(Site.url == url).one_or_none() is None:
-            requests.get('http://127.0.0.1:5001/add?domain={}'.format(url))
-            db.session.add(site)
-            db.session.commit()
+    if form_search.validate_on_submit():
+        if '.' in form_search.url.data:
+            url = form_search.url.data
+            site = Site(url=url)
+            if Site.query.filter(Site.url == url).one_or_none() is None:
+                requests.get('http://127.0.0.1:5001/add?domain={}'.format(url))
+                db.session.add(site)
+                db.session.commit()
 
+            else:
+                return render_template(
+                    "index.html",
+                    user=current_user,
+                    sites=Site.query.all(),
+                    form_search=form_search,
+                    form_file=form_file,
+                    error='Данный URL уже есть в базе данных.'
+                    )
         else:
             return render_template(
                 "index.html",
@@ -29,8 +39,8 @@ def index():
                 sites=Site.query.all(),
                 form_search=form_search,
                 form_file=form_file,
-                error='Данный URL уже есть в базе данных.'
-                )
+                error="Введите корректное доменное имя."
+            )
 
         return redirect('/')
 
@@ -162,3 +172,7 @@ def opa():
     return render_template("ban.html")
 #@app.route("/upload_file")
 #def upload(path)
+
+@app.route("/about", methods=['GET'])
+def about():
+    return render_template('about.html')

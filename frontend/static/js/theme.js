@@ -37,7 +37,6 @@
 				`<img src="/static/img/sova_white.png" class="top-img-wigth change-theme">`
 			);
 			$("footer").append(`
-<<<<<<< HEAD
 				<div class="uk-section uk-section-secondary uk-section-xsmall uk-padding-small">
 					<div class="uk-container uk-flex uk-flex-between uk-flex-bottom">
 						<div class="uk-flex uk-flex-column">
@@ -50,13 +49,6 @@
 						<div>
 							<p>&#169; Copyleft Sirius EC 2019</p>
 						</div>
-=======
-				<div class="uk-section uk-section-secondary uk-light uk-section-xsmall uk-padding-small">
-			        <div class="uk-container">
-				        <a href="" class="uk-link">О нас</a>
-				        <a href="https://github.com/fincert-sirius/avengers/blob/frontend/frontend/templates/base.html" class="uk-link">GitHub</a>
-
->>>>>>> 0e4bc7801fb522f9028977a4b715e06a948cca8d
 					</div>
 				</div>
 			`);
