@@ -1,19 +1,65 @@
 from app import app
+import mainfunc
+import requests, os
+
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, login_required, current_user, logout_user
 from src.models import User, Site
 from app import login_manager, db, log
-from src import forms, scorer
+from src import forms
+import sqlalchemy
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
+    form_file = forms.UploadFile()
+    form_search = forms.AddSiteForm()
+    if form_search.validate_on_submit():
+        if '.' in form_search.url.data:
+            url = form_search.url.data
+            site = Site(url=url)
+            if Site.query.filter(Site.url == url).one_or_none() is None:
+                requests.get('http://127.0.0.1:5001/add?domain={}'.format(url))
+                db.session.add(site)
+                db.session.commit()
+
+            else:
+                return render_template(
+                    "index.html",
+                    user=current_user,
+                    sites=Site.query.all(),
+                    form_search=form_search,
+                    form_file=form_file,
+                    error='Данный URL уже есть в базе данных.'
+                    )
+        else:
+            return render_template(
+                "index.html",
+                user=current_user,
+                sites=Site.query.all(),
+                form_search=form_search,
+                form_file=form_file,
+                error="Введите корректное доменное имя."
+            )
+
+        return redirect('/')
+
+    if form_file.validate_on_submit():
+        f = form_file.file_field.data
+        filename = f.filename
+        f.save(os.path.join(app.instance_path, filename))
+        return redirect(url_for('index'))
+
     return render_template(
         "index.html",
         user=current_user,
-        sites = Site.query.all(),
-        score = lambda x: scorer.default_scorer.get_score(x)
+        sites=Site.query.all(),
+        form_search=form_search,
+        form_file=form_file,
+        error=None
     )
+
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -42,28 +88,22 @@ def login():
 
     return render_template("login.html", form=form)
 
+
 @app.route("/logout")
 def logout():
     logout_user()
     return redirect(url_for("login"))
 
+
 @login_manager.unauthorized_handler
 def unauthorized():
     return redirect(url_for("login"))
 
+
 @app.route("/add", methods=["GET", "POST"])
 def add_site():
-    form = forms.AddSiteForm()
-    if form.validate_on_submit():
-        url = form.url.data
-        site = Site(url=url)
+    return redirect(url_for('index'))
 
-        db.session.add(site)
-        db.session.commit()
-
-        return redirect(url_for("index"))
-
-    return render_template("add_site.html", form=form)
 
 @app.route("/add_user", methods=["GET", "POST"])
 def add_user():
@@ -72,13 +112,15 @@ def add_user():
         login = form.login.data
         password = form.password.data
         user = User(username=login, password_hash=password)
-
         db.session.add(user)
         db.session.commit()
 
         return redirect(url_for("index"))
 
-    return render_template("add_user.html", form=form)
+    return render_template("add_user.html",
+                           form=form
+                           )
+
 
 @app.route("/upload_excel", methods=["GET", "POST"])
 def upload_sites_excel():
@@ -87,4 +129,50 @@ def upload_sites_excel():
         f = form.excel.data
         pass
 
-    return render_template("upload_sites_excel.html", form=form)
+    return render_template("upload_sites_excel.html",
+                           form=form
+                           )
+
+# @app.route("/")
+
+@app.route("/site/<int:site_id>", methods=["GET", "POST"])
+def site_info(site_id):
+    form = forms.AddSiteForm()
+    form2= forms.UploadFile()
+    current_site = Site.query.filter(Site.id == site_id).first()
+    return render_template('site.html',
+                           site=current_site,
+                           user=current_user,
+                           webarchive=mainfunc.web_archive(current_site.url)[1:],
+                           form_search=form,
+                           form_file=form2
+                           )
+
+@app.route("/ban/site/<int:site_id>", methods=["GET", "POST"])
+def ban_site(site_id):
+    form = forms.AddComment()
+    comment = form.comment.data
+    current_site = Site.query.filter(Site.id == site_id).first()
+    current_site.status = 'BLOCKED'
+    current_site.comment = comment
+    db.session.commit()
+    return redirect(url_for('index'))
+
+
+@app.route("/clear/site/<int:site_id>", methods=["GET", "POST"])
+def clear_site(site_id):
+    current_site = Site.query.filter(Site.id == site_id).first()
+    current_site.status = 'GOOD_SITE'
+    db.session.commit()
+    return redirect(url_for('index'))
+
+
+@app.route("/ban404")
+def opa():
+    return render_template("ban.html")
+#@app.route("/upload_file")
+#def upload(path)
+
+@app.route("/about", methods=['GET'])
+def about():
+    return render_template('about.html')
