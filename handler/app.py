@@ -25,10 +25,19 @@ def handling(q):
         info['comment'] = result[2]
         info['time'] = int(time.time())
 
-        f = open('verdicts.json', mode='r')
-        data = json.load(f)
-        data[domain] = info
-        f.close()
+        try:
+            f = open('verdicts.json', mode='r')
+            data = json.load(f)
+            data[domain] = info
+            f.close()
+        except:
+            f = open('verdicts.json', mode='w')
+            f.write("\{\}")
+            f.close()
+            f = open('verdicts.json', mode='r')
+            data = json.load(f)
+            data[domain] = info
+            f.close()
         f = open('verdicts.json', mode='w')
         json.dump(data, f)
         f.close()
