@@ -22,16 +22,16 @@
 
                     <div class="uk-form-controls">
                         <select class="uk-select" id="form-stacked-select" name="site_type">
-                            <option style="color: #fff;">Лжебанк (рус)</option>
-                            <option>Лжебанк (анг)</option>
-                            <option>Опросник</option>
-                            <option>C2C переводы</option>
-                            <option>Лжесоциалка</option>
-                            <option>Билетник</option>
-                            <option>Лжемфо (анг)</option>
-                            <option>Лжеломбард</option>
-                            <option>Прочее (рус)</option>
-                            <option>Прочее (анг)</option>
+                            <option value="fakebank_ru" style="color: #fff;">Лжебанк (рус)</option>
+                            <option value="fakebank_en">Лжебанк (анг)</option>
+                            <option value="fakesurvey">Опросник</option>
+                            <option value="fakectc">C2C переводы</option>
+                            <option value="fakesocial">Лжесоциалка</option>
+                            <option value="faketick">Билетник</option>
+                            <option value="fakemfo_en">Лжемфо (анг)</option>
+                            <option value="fakelombard">Лжеломбард</option>
+                            <option value="fakesmth">Прочее (рус)</option>
+                            <option value="fakesmth_en">Прочее (анг)</option>
                         </select>
                     </div>
 
@@ -39,6 +39,12 @@
                     <div class="uk-text-secondary">
                        <textarea name="comment" id="" class="uk-textarea" placeholder="Комментарий"></textarea>
                     </div>
+                    <h4>E-mail регистратора:</h4>
+                    {% if site.reg_mail != None %}
+                    {{ site.reg_mail }}
+                    {% else %}
+
+                    {% endif %}
                     <p class="uk-text-right">
                         <input type="submit" value="Заблокировать" class="uk-button uk-button-danger">
                         <button class="uk-button uk-button-default uk-modal-close" type="button">Отмена</button>
@@ -55,73 +61,97 @@
                 </div>
                 <div class="uk-body">
                     <div class="uk-text-secondary">
-                        <span class="uk-text-bold">Тип ресурса:</span>
-                        <span class="uk-text-secondary">лжебанк</span>
+                        <span class="uk-text-bold"></span>
+                        <span class="uk-text-secondary"></span>
                     </div>
                     <div class="uk-text-secondary">
-                        <span class="uk-text-bold">Реестр ЦБ:</span>
-                        <span class="uk-text-danger">не найдено</span>
+                        <span class="uk-text-bold"></span>
+                        <span class="uk-text-danger"></span>
                     </div>
                     <div class="uk-text-secondary">
-                        <span class="uk-text-bold">Реестр ЕГРЮЛ:</span>
-                        <span class="uk-text-success">№85739</span>
+                        <span class="uk-text-bold"></span>
+                        <span class="uk-text-success"></span>
                     </div>
+
+                    {% if site.status.name != 'PROCESSING' %}
                     <div class="uk-text-secondary uk-margin-small-top">
                         <ul uk-tab>
-                            <li class="uk-active"><a href="#">Whois</a></li>
+                            <li class="uk-active">
+                                <a href="#">
+                                {% if site.score != None %}
+                                    Score: {{ site.score }}
+                                {% else %}
+                                    Score: 0
+                                 {% endif %}
+                                </a>
+                            </li>
+                            <li><a href="#">Whois</a></li>
                             <li><a href="#">Webarchive</a></li>
                             <li><a href="#">Скриншоты</a></li>
                         </ul>
                         <ul class="uk-switcher uk-margin">
                             <li class="uk-active">
                                 <ul class="uk-list uk-list-striped">
-                                    {% if site.status.name == 'PROCESSING' %}
-                                    <li> Данная информация пока недоступна. Вы можете проверить сайт вручную либо дождаться проверки системой.</li>
+                                    {% if criterions != None %}
+
+                                        {% for key, value in criterions.items() recursive %}
+                                           <li> {{ key }} очков за: {{ value }}</li>
+                                        {% endfor %}
 
                                     {% else %}
-                                    {% for who in site.whois %}
+                                    <li>
+                                        Критерии подозрения отсутсвуют.
+                                    </li>
+                                    {% endif %}
+                                </ul>
 
+                            </li>
+                            <li class="uk-active">
+                                <ul class="uk-list uk-list-striped">
+                                    {% for who in site.whois %}
                                     <li>{{ who }}</li>
                                     {% endfor %}
-                                    {% endif %}
                                 </ul>
                             </li>
 
                             <li>
+
                                 <form class="uk-form-horizontal">
                                     <div class="uk-margin uk-width-1-2">
-                                        <label class="uk-form-label" for="form-stacked-text">Дата начала</label>
+                                        <label class="uk-form-label" for="form-stacked-text">
+                                            Дата начала
+                                        </label>
                                         <div class="uk-form-controls">
                                             <input class="uk-input" id="form-stacked-text" type="date">
                                         </div>
                                     </div>
                                     <div class="uk-margin uk-width-1-2">
-                                        <label class="uk-form-label" for="form-stacked-text">Дата окончания</label>
+                                        <label class="uk-form-label" for="form-stacked-text">
+                                            Дата окончания
+                                        </label>
                                         <div class="uk-form-controls">
                                             <input class="uk-input" id="form-stacked-text" type="date">
                                         </div>
                                     </div>
-                                    
                                 </form>
+
 
                                 <ul class="uk-list uk-list-striped">
                                     {% for web in webarchive %}
-                                    <li>Дата:{{ web[0][0:4] }}.{{ web[0][4:6] }}.{{ web[0][6:8] }} &nbsp;&nbsp;  URL:{{ web[1] }}&nbsp;&nbsp;HTML Lenght: {{ web[2] }}</li>
+                                    <li>
+                                        Дата:{{ web[0][0:4] }}.{{ web[0][4:6] }}.{{ web[0][6:8] }} &nbsp;&nbsp;  URL:{{ web[1] }}&nbsp;&nbsp;HTML Lenght: {{ web[2] }}
+                                    </li>
                                     {% endfor %}
                                 </ul>
                             </li>
-                            {% if site.status.name == 'PROCESSING' %}
-                                <li>
-                                Данная информация пока недоступна. Вы можете проверить сайт вручную либо дождаться проверки системой.
-                                </li>
-
-                            {% else %}
-                                <li>
-                                сюда скриншоты сайта
-                                </li>
-                            {% endif %}
+                            <li>
+                                <img src="{{ site.screen }}" width="320" height="180">
+                            </li>
                         </ul>
                     </div>
+                    {% else %}
+
+                    {% endif %}
                     <!-- <form action="/ban/site/{{ site.id}}" method="POST">
                         <label><input class="uk-radio" type="radio" name="site_type"> Лжебанк (рус)</label>
                         <label><input class="uk-radio" type="radio" name="site_type"> Лжебанк (анг)</label>

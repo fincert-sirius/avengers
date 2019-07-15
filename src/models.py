@@ -23,5 +23,7 @@ class Site(db.Model):
     status = db.Column(db.Enum(SiteStatus), default=SiteStatus.PROCESSING)
     comment = db.Column(db.Text)
     whois_data = db.Column(db.Text)
-    score = db.Column(db.Text)
+    score = db.Column(db.Text, default='0')
     screen = db.Column(db.Text)
+    reg_mail = db.Column(db.Text)
+    criterions = db.Column(db.Text, default='{}')
