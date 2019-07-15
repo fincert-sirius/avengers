@@ -29,6 +29,7 @@ ALLOWED_EXTENSIONS = set(['json', 'xml', 'txt', 'csv'])
 from src import models
 
 from src import routes
+from src import cli
 
 @login_manager.user_loader
 def load_user(user_id):

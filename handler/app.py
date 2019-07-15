@@ -59,11 +59,15 @@ handlingThread.start()
 
 #-----------------------------------------
 
-@app.route('/add')
+@app.route('/add', methods=['POST'])
 def api():
-    domain = request.args.get('domain')
-    domainsQueue.put(domain)
-    return 'added to queue'
+    if request.method == 'POST':
+        domain = request.data.decode('utf-8')
+        logging.info('Received domain: {}'.format(domain))
+        domainsQueue.put(domain)
+        return 'added to queue'
+    else:
+        return 'go away'
 
 @app.route('/results')
 def results():
@@ -79,6 +83,6 @@ def results():
     return json.dumps(data)
 
 if __name__ == "__main__":
-    app.run(host=config['host'], port=config['port'])
+    app.run(host=config['host'], port=config['port'], debug=True)
 
 
