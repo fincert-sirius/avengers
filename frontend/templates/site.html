@@ -11,16 +11,16 @@
                     <h3>Выберите тип</h3>
                     <div class="uk-form-controls">
                         <select class="uk-select" id="form-stacked-select" name="site_type">
-                            <option style="color: #fff;">Лжебанк (рус)</option>
-                            <option>Лжебанк (анг)</option>
-                            <option>Опросник</option>
-                            <option>C2C переводы</option>
-                            <option>Лжесоциалка</option>
-                            <option>Билетник</option>
-                            <option>Лжемфо (анг)</option>
-                            <option>Лжеломбард</option>
-                            <option>Прочее (рус)</option>
-                            <option>Прочее (анг)</option>
+                            <option class="option-white">Лжебанк (рус)</option>
+                            <option class="option-white">Лжебанк (анг)</option>
+                            <option class="option-white">Опросник</option>
+                            <option class="option-white">C2C переводы</option>
+                            <option class="option-white">Лжесоциалка</option>
+                            <option class="option-white">Билетник</option>
+                            <option class="option-white">Лжемфо (анг)</option>
+                            <option class="option-white">Лжеломбард</option>
+                            <option class="option-white">Прочее (рус)</option>
+                            <option class="option-white">Прочее (анг)</option>
                         </select>
                     </div>
 
@@ -39,22 +39,12 @@
             <a href="/" class="uk-width-1-6 uk-text-large no-underline"><span uk-icon="icon: chevron-left"></span> Назад</a>
             <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-width-1-1uk-animation-slide-bottom-small">
                 <div class="top uk-flex uk-flex-bottom uk-margin-bottom">
-                    <a href="http://{{ site.url }}" class="uk-button uk-button-text uk-width-1-3 uk-margin-remove-bottom uk-text-lead">{{ site.url }}</a>
+                    <div class="uk-width-1-3">
+                        <a href="http://{{ site.url }}" class="uk-button button-not-capitalise uk-margin-remove-bottom uk-padding-remove">{{ site.url }}</a>
+                    </div>
                     <span class="uk-text-muted"> / 03.07.2019</span>
                 </div>
                 <div class="uk-body">
-                    <div class="uk-text-secondary">
-                        <span class="uk-text-bold">Тип ресурса:</span>
-                        <span class="uk-text-secondary">лжебанк</span>
-                    </div>
-                    <div class="uk-text-secondary">
-                        <span class="uk-text-bold">Реестр ЦБ:</span>
-                        <span class="uk-text-danger">не найдено</span>
-                    </div>
-                    <div class="uk-text-secondary">
-                        <span class="uk-text-bold">Реестр ЕГРЮЛ:</span>
-                        <span class="uk-text-success">№85739</span>
-                    </div>
                     <div class="uk-text-secondary uk-margin-small-top">
                         <ul uk-tab>
                             <li class="uk-active"><a href="#">Whois</a></li>

@@ -69,3 +69,8 @@ textarea {
 .wrapper {
   min-height: calc(100vh - 84px);
 }
+.uk-container a.button-not-capitalise {
+	text-transform: none;
+	font-size: 22px;
+	text-align: left;
+}
