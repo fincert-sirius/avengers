@@ -14,6 +14,8 @@ def upload_json(filename):
         for i in range(len(result)):
             try:
                 result[i] = result[i].split("/")[2]
+                if result[i].startswith('www'):
+                    result[i] = result[i][3:]
             except:
                 pass
         return result
