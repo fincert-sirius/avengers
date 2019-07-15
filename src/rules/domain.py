@@ -68,6 +68,7 @@ class Lev_dist:
 	def get_score(self, page):
 		score = 0
 		domain = page.get_domain()
+		words_in_domain = re.split("\W+", domain)
 
 		for key in [k for (k,s) in _suspicious['keywords'].items() if s >= 70]:
 			for word in [w for w in words_in_domain if w not in ['email', 'mail', 'cloud']]:

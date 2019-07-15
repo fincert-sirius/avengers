@@ -1,11 +1,19 @@
 import yaml
+from handler.handler import _Handler
+from src import parser
 
 with open('config/suspicious.yaml', 'r') as f:
 		suspicious = yaml.safe_load(f)
 
+
 class Check_susp_title:
 	def get_score(self, page):
-		title = page.get_html().title.string
+		title = page.get_html().title
+
+		if (title == None):
+			return 0
+
+		title = title.string
 
 		if title.lstrip() == '':
 			return 0
@@ -25,6 +33,12 @@ class Check_susp_text:
 	def get_score(self, page):
 		text = suspicious['susp_text']
 		html_text = page.get_html().get_text()
+
+		if html_text == '':
+			return 0
+
+		html_text = parse(html_text)
+
 		score = 0
 		for word in text:
 			if word in html_text:
@@ -42,6 +56,12 @@ class Check_2_auth:
 	def get_score(self, page):
 		text = suspicious['2FA']
 		html_text = page.get_html().get_text()
+
+		if html_text == '':
+			return 0
+
+		html_text = parse(html_text)
+
 		score = 0
 		for word in text:
 			if word in html_text:
@@ -69,7 +89,7 @@ class Check_pass_input:
 
 class Check_hid_input:
 	def get_score(self, page):
-		attr = page.get_html().find_all('input', hidden='True')
+		attr = list(page.get_html().find_all('input', hidden='True'))
 		if len(attr) != 0:
 			return suspicious['pass_input']['hid_input']
 		return 0
@@ -83,6 +103,12 @@ class Check_multi_auth:
 	def get_score(self, page):
 		text = suspicious['multi-auth']
 		html_text = page.get_html().get_text()
+
+		if html_text == '':
+			return 0
+
+		html_text = parse(html_text)
+
 		col = 0
 		for word in text:
 			if word in html_text:
@@ -101,23 +127,34 @@ class Check_multi_auth:
 
 class Check_time:
 	def get_score(self, page):
-		html_text = page.get_html().get_text()
-		for word in html_text:
-			col = 0
-			for letter in word:
-				if letter == ':' or (letter >= '0' and letter <= '9'):
-					col += 1
-					continue
-				else:
-					break
+		html_text = page.get_html().find_all('div')
 
-			if col == len(word):
+		for word in html_text:
+			if word == '\d{2}:\d{2}:\d{2}' or word == '\d{2}:\d{2}:\d{2}\n' or word == '\d{2}:\d{2}:\d{2},':
 				return suspicious['check_time']['has_timer']
 
 		return 0
 
-		def get_description(self):
-			return """
-				It determines if the page has a time-date counter.
-			"""
+	def get_description(self):
+		return """
+			It determines if the page has a time-date counter.
+		"""
 
+handl = _Handler()
+
+class Check_cloudflare:
+	def get_score(self, page):
+		domain = page.get_domain()
+		whois = handl.get_whois(domain)
+		words = list(whois['asn_description'].split(' '))
+
+		print(words)
+
+		if 'Cloudflare' in words or 'Cloudflare,' in words:
+			return suspicious['DNS']['Cloudflare']
+		return 0
+
+	def get_description(self):
+		return """
+			It determines if domain is registered in Cloudflare.
+		"""
