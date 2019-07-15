@@ -1,7 +1,6 @@
 import yaml
 import re
-from tld import get_tld
-from Levenshtein import distance
+
 
 with open('config/suspicious.yaml', 'r') as f:
 		_suspicious = yaml.safe_load(f)

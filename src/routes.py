@@ -1,5 +1,5 @@
 from app import app
-import mainfunc
+from src import mainfunc
 import requests, os
 
 from flask import render_template, request, redirect, url_for
