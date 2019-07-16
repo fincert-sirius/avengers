@@ -1,6 +1,6 @@
 import yaml
 from handler.handler import _Handler
-from src import parser
+from src.parser import parser
 
 with open('config/suspicious.yaml', 'r') as f:
 		suspicious = yaml.safe_load(f)
@@ -38,7 +38,7 @@ class Check_susp_text:
 		if html_text == '':
 			return 0
 
-		html_text = parse(html_text)
+		html_text = parser(html_text)
 
 		score = 0
 		for word in text:
@@ -61,7 +61,7 @@ class Check_2_auth:
 		if html_text == '':
 			return 0
 
-		html_text = parse(html_text)
+		html_text = parser(html_text)
 
 		score = 0
 		for word in text:
@@ -79,8 +79,6 @@ class Check_2_auth:
 class Check_pass_input:
 	def get_score(self, page):
 		soup = page.get_html()
-
-		print('qweqweq')
 
 		pass_input = soup.find_all('input', type='password')
 
@@ -114,7 +112,7 @@ class Check_multi_auth:
 		if html_text == '':
 			return 0
 
-		html_text = parse(html_text)
+		html_text = parser(html_text)
 
 		col = 0
 		for word in text:
