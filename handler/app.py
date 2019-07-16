@@ -30,8 +30,8 @@ def handling_process(q):
         logging.info('Handling was completed.')
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://{}@{}:{}/{}".format(
-    config['db_user'], config['db_host'], config['db_port'], config['db_name'])
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://{}:{}@{}:{}/{}".format(
+    config['db_user'], config['db_pwd'], config['db_host'], config['db_port'], config['db_name'])
 db = SQLAlchemy(app)
 
 domainsQueue = Queue()
