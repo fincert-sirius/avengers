@@ -12,15 +12,22 @@ def handle(domain):
     comment = 'Some notes'
     category = 'lokhotron'
 
-    site = Site(url=domain, comment=comment, whois_data=get_whois(domain), status=SiteStatus.NEW)
+    whois = get_whois('domain')
+    if whois == 'error':
+        print('This web-site does not exists.')
+        return
+
+    site = Site(url=domain, comment=comment, whois_data=whois, status=SiteStatus.NEW)
     db.session.add(site)
     db.session.commit()
 
 def get_whois(domain):
     ip = get_ip(domain)
+    if ip == 'error':
+        return 'error'
     obj = IPWhois(ip)
     info = obj.lookup_whois()
-    print(info)
+    return info
 
 def get_ip(domain):
     try:
