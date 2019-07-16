@@ -31,7 +31,8 @@ def handling_process(q):
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://{}:{}@{}:{}/{}".format(
-    config['db_user'], config['db_pwd'], config['db_host'], config['db_port'], config['db_name'])
+    config['db_user'], config['db_pwd'], config['db_host'],
+    config['db_port'], config['db_name'])
 db = SQLAlchemy(app)
 
 domainsQueue = Queue()
