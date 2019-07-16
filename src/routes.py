@@ -23,7 +23,7 @@ def index():
             site = Site(url=url)
             if Site.query.filter(Site.url == url).one_or_none() is None:
                 try:
-                    requests.get('http://127.0.0.1:5001/add?domain={}'.format(url))
+                    requests.post('http://127.0.0.1:5001/add', data='{}'.format(url))
                     db.session.add(site)
                     db.session.commit()
                     return render_template(
@@ -160,7 +160,7 @@ def upload():
         site = Site(url=url)
         if Site.query.filter(Site.url == url).one_or_none() is None:
             try:
-                requests.get('http://127.0.0.1:5001/add?domain={}'.format(url))
+                requests.post('http://127.0.0.1:5001/add', data='{}'.format(site.url))
                 db.session.add(site)
                 db.session.commit()
             except:
@@ -290,5 +290,7 @@ DNSSEC: Unsigned'''
     current_site.whois_data = json.dumps(dict_whois, ensure_ascii=False, separators=(',', ':'))
     current_site.criterions = json.dumps(dict, ensure_ascii=False, separators=(',', ': '))
     current_site.screen = 'https://www.music-bazaar.com/album-images/vol1001/580/580642/2419480-big/-Ban-[EP]-cover.jpg'
+    current_site.date = '09.11.2001'
     db.session.commit()
+
     return redirect(url_for('index'))
