@@ -3,7 +3,7 @@ import socket
 import yaml
 from ipwhois import IPWhois
 from app import db
-from models import Site
+from models import Site, SiteStatus
 
 def handle(domain):
     time.sleep(15) # magic
@@ -12,7 +12,7 @@ def handle(domain):
     comment = 'Some notes'
     category = 'lokhotron'
 
-    site = Site(url=domain, comment=comment, whois_data=get_whois(domain))
+    site = Site(url=domain, comment=comment, whois_data=get_whois(domain), status=SiteStatus.NEW)
     db.session.add(site)
     db.session.commit()
 
