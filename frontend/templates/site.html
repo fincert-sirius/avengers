@@ -9,29 +9,18 @@
             <div class="uk-modal-dialog uk-modal-body">
                 <form action="/ban/site/{{ site.id}}" method="POST" class="uk-form-stacked uk-flex uk-flex-column">
                     <h3>Выберите тип</h3>
-                    <!-- <label><input class="uk-radio" type="radio" name="site_type"> Лжебанк (рус)</label>
-                    <label><input class="uk-radio" type="radio" name="site_type"> Лжебанк (анг)</label>
-                    <label><input class="uk-radio" type="radio" name="site_type"> Опросник</label>
-                    <label><input class="uk-radio" type="radio" name="site_type"> C2C переводы</label>
-                    <label><input class="uk-radio" type="radio" name="site_type"> Лжесоциалка</label>
-                    <label><input class="uk-radio" type="radio" name="site_type"> Билетник</label>
-                    <label><input class="uk-radio" type="radio" name="site_type"> Лжемфо (анг)</label>
-                    <label><input class="uk-radio" type="radio" name="site_type"> Лжеломбард</label>
-                    <label><input class="uk-radio" type="radio" name="site_type"> Прочее (рус)</label>
-                    <label><input class="uk-radio" type="radio" name="site_type"> Прочее (анг)</label> -->
-
                     <div class="uk-form-controls">
                         <select class="uk-select" id="form-stacked-select" name="site_type">
-                            <option value="fakebank_ru" style="color: #fff;">Лжебанк (рус)</option>
-                            <option value="fakebank_en">Лжебанк (анг)</option>
-                            <option value="fakesurvey">Опросник</option>
-                            <option value="fakectc">C2C переводы</option>
-                            <option value="fakesocial">Лжесоциалка</option>
-                            <option value="faketick">Билетник</option>
-                            <option value="fakemfo_en">Лжемфо (анг)</option>
-                            <option value="fakelombard">Лжеломбард</option>
-                            <option value="fakesmth">Прочее (рус)</option>
-                            <option value="fakesmth_en">Прочее (анг)</option>
+                            <option class="option-white" value="fakebank_ru">Лжебанк (рус)</option>
+                            <option class="option-white" value="fakebank_en">Лжебанк (анг)</option>
+                            <option class="option-white" value="fakesurvey">Опросник</option>
+                            <option class="option-white" value="fakectc">C2C переводы</option>
+                            <option class="option-white" value="fakesocial">Лжесоциалка</option>
+                            <option class="option-white" value="faketick">Билетник</option>
+                            <option class="option-white" value="fakemfo_en">Лжемфо (анг)</option>
+                            <option class="option-white" value="fakelombard">Лжеломбард</option>
+                            <option class="option-white" value="fakesmth">Прочее (рус)</option>
+                            <option class="option-white" value="fakesmth_en">Прочее (анг)</option>
                         </select>
                     </div>
 
@@ -56,7 +45,9 @@
             <a href="/" class="uk-width-1-6 uk-text-large no-underline"><span uk-icon="icon: chevron-left"></span> Назад</a>
             <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-width-1-1uk-animation-slide-bottom-small">
                 <div class="top uk-flex uk-flex-bottom uk-margin-bottom">
-                    <a href="http://{{ site.url }}" class="uk-button uk-button-text uk-width-1-3 uk-margin-remove-bottom uk-text-lead">{{ site.url }}</a>
+                    <div class="uk-width-1-3">
+                        <a href="http://{{ site.url }}" class="uk-button button-not-capitalise uk-margin-remove-bottom uk-padding-remove">{{ site.url }}</a>
+                    </div>
                     <span class="uk-text-muted"> / 03.07.2019</span>
                 </div>
                 <div class="uk-body">
@@ -154,24 +145,8 @@
                     {% else %}
 
                     {% endif %}
-                    <!-- <form action="/ban/site/{{ site.id}}" method="POST">
-                        <label><input class="uk-radio" type="radio" name="site_type"> Лжебанк (рус)</label>
-                        <label><input class="uk-radio" type="radio" name="site_type"> Лжебанк (анг)</label>
-                        <label><input class="uk-radio" type="radio" name="site_type"> Опросник</label>
-                        <label><input class="uk-radio" type="radio" name="site_type"> C2C переводы</label>
-                        <label><input class="uk-radio" type="radio" name="site_type"> Лжесоциалка</label>
-                        <label><input class="uk-radio" type="radio" name="site_type"> Билетник</label>
-                        <label><input class="uk-radio" type="radio" name="site_type"> Лжемфо (анг)</label>
-                        <label><input class="uk-radio" type="radio" name="site_type"> Лжеломбард</label>
-                        <label><input class="uk-radio" type="radio" name="site_type"> Прочее (рус)</label>
-                        <label><input class="uk-radio" type="radio" name="site_type"> Прочее (анг)</label>
-                        <div class="uk-text-secondary uk-margin-bottom">
-                           <textarea name="comment" id="" class="uk-textarea uk-width-3-4" placeholder="Комментарий"></textarea>
-                        </div>
-                        <input type="submit" value="Заблокировать" class="uk-button uk-button-danger"> -->
-                        <a href="#modal-example" class="uk-button uk-button-danger" uk-toggle>Заблокировать</a>
-                        <a href="/clear/site/{{ site.id }}" class="uk-button uk-button-success">Оставить</a>
-                    <!-- </form> -->
+                    <a href="#modal-example" class="uk-button uk-button-danger" uk-toggle>Заблокировать</a>
+                    <a href="/clear/site/{{ site.id }}" class="uk-button uk-button-success">Оставить</a>
                 </div>
             </div>
         </div>
