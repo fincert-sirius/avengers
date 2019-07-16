@@ -63,13 +63,14 @@ def index():
                 error="Введите корректное доменное имя."
             )
 
-        return redirect('/')
-
-    if form_file.validate_on_submit():
-        f = form_file.file_field.data
-        filename = f.filename
-        f.save(os.path.join(app.instance_path, filename))
         return redirect(url_for('index'))
+
+    if request.method == ["POST"]:
+        file = request.files['file']
+        if file:
+            filename = file.filename
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('index'))
 
     return render_template(
         "index.html",
@@ -142,19 +143,38 @@ def add_user():
                            )
 
 
-@app.route("/upload_excel", methods=["GET", "POST"])
-def upload_sites_excel():
-    form = forms.UploadSitesExcel()
-    if form.validate_on_submit():
-        f = form.excel.data
-        pass
+@app.route("/upload", methods=["POST"])
+def upload():
+    form_file = forms.UploadFile()
+    form_search = forms.AddSiteForm()
 
-    return render_template("upload_sites_excel.html",
-                           form=form
-                           )
+    target = os.path.join(app.config['UPLOAD_FOLDER'])
+    if not os.path.isdir(target):
+        os.mkdir(target)
+    file = request.files['file']
+    filename = file.filename
+    destination = "/".join([target, filename])
+    file.save(destination)
+    urls = mainfunc.upload_file(destination)
+    for url in urls:
+        site = Site(url=url)
+        if Site.query.filter(Site.url == url).one_or_none() is None:
+            try:
+                requests.get('http://127.0.0.1:5001/add?domain={}'.format(url))
+                db.session.add(site)
+                db.session.commit()
+            except:
+                return render_template(
+                    "index.html",
+                    user=current_user,
+                    sites=Site.query.all(),
+                    form_search=form_search,
+                    form_file=form_file,
+                    error='Не удается подключиться к серверу-обработчику.\nПроверьте подключение.'
+                )
 
 
-# @app.route("/")
+    return redirect(url_for('index'))
 
 @app.route("/site/<int:site_id>", methods=["GET", "POST"])
 def site_info(site_id):
@@ -168,7 +188,8 @@ def site_info(site_id):
                            webarchive=mainfunc.web_archive(current_site.url)[1:],
                            form_search=form,
                            form_file=form2,
-                           criterions=json.loads(current_site.criterions)
+                           criterions=json.loads(current_site.criterions),
+                           whois_data=json.loads(current_site.whois_data)
                            )
 
 
@@ -198,9 +219,6 @@ def opa():
     return render_template("ban.html")
 
 
-# @app.route("/upload_file")
-# def upload(path)
-
 @app.route("/about", methods=['GET'])
 def about():
     return render_template('about.html')
@@ -210,6 +228,66 @@ def about():
 def add_test():
     current_site = Site.query.filter(Site.id == 7).first()
     dict = {'5': 'опа', '10': 'а что это', '14': 'такое у нас'}
+    whoisraw = '''Domain Name: acegw.com
+Registry Domain ID: 2251995052_DOMAIN_COM-VRSN
+Registrar WHOIS Server: whois.maff.com
+Registrar URL: http://www.maff.com
+Updated Date: 2019-03-13T13:17:32Z
+Creation Date: 2018-04-14T02:50:37Z
+Registrar Registration Expiration Date: 2020-04-14T02:50:37Z
+Registrar: MAFF Inc.
+Registrar IANA ID: 817
+Registrar Abuse Contact Email: email@maff.com
+Registrar Abuse Contact Phone: +86.5925990220
+Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited 
+Registry Registrant ID: 
+Registrant Name: hui tian
+Registrant Organization: tianhui
+Registrant Street: pulandianshi,lianshanzhen,shuimenzicun,chengzigout
+Registrant City: dalianshi
+Registrant State/Province: liaoning
+Registrant Postal Code: 116200
+Registrant Country: China
+Registrant Phone: +86.15998101049
+Registrant Phone Ext: 
+Registrant Fax: +86.15998101049
+Registrant Fax Ext: 
+Registrant Email: email@qq.com
+Registry Admin ID: 
+Admin Name: hui tian
+Admin Organization: tianhui
+Admin Street: pulandianshi,lianshanzhen,shuimenzicun,chengzigout
+Admin City: dalianshi
+Admin State/Province: liaoning
+Admin Postal Code: 116200
+Admin Country: China
+Admin Phone: +86.15998101049
+Admin Phone Ext: 
+Admin Fax: +86.15998101049
+Admin Fax Ext: 
+Admin Email: email@qq.com
+Registry Tech ID: 
+Tech Name: hui tian
+Tech Organization: tianhui
+Tech Street: pulandianshi,lianshanzhen,shuimenzicun,chengzigout
+Tech City: dalianshi
+Tech State/Province: liaoning
+Tech Postal Code: 116200
+Tech Country: China
+Tech Phone: +86.15998101049
+Tech Phone Ext: 
+Tech Fax: +86.15998101049
+Tech Fax Ext: 
+Tech Email: email@qq.com
+Name Server: V1.DNSDUN.COM
+Name Server: V1.DNSDUN.NET
+DNSSEC: Unsigned'''
+    dict_whois = {}
+    for i in whoisraw.split('\n'):
+        i = i.split(':')
+        dict_whois[i[0]] = ':'.join(i[1:])
+    #dict2 = {(i[0], i[1]) for i in whoisraw.split('\n')}
+    current_site.whois_data = json.dumps(dict_whois, ensure_ascii=False, separators=(',', ':'))
     current_site.criterions = json.dumps(dict, ensure_ascii=False, separators=(',', ': '))
     current_site.screen = 'https://www.music-bazaar.com/album-images/vol1001/580/580642/2419480-big/-Ban-[EP]-cover.jpg'
     db.session.commit()

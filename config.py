@@ -8,5 +8,5 @@ class Config:
     CSRF_ENABLED = True
     SECRET_KEY = 'you-will-never-guess'
 
-    UPLOAD_FOLDER = '/uploads'
+    UPLOAD_FOLDER = r'C:\Users\User\PycharmProjects\avengers_final\uploads'
     ALLOWED_EXTENSIONS = ('json', 'xml', 'txt', 'csv')

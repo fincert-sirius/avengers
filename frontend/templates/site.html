@@ -43,7 +43,7 @@
                     {% if site.reg_mail != None %}
                     {{ site.reg_mail }}
                     {% else %}
-
+                    <-- форма для email -->
                     {% endif %}
                     <p class="uk-text-right">
                         <input type="submit" value="Заблокировать" class="uk-button uk-button-danger">
@@ -79,7 +79,7 @@
                             <li class="uk-active">
                                 <a href="#">
                                 {% if site.score != None %}
-                                    Score: {{ site.score }}
+                                    Score:<strong> {{ site.score }} </strong>
                                 {% else %}
                                     Score: 0
                                  {% endif %}
@@ -108,8 +108,10 @@
                             </li>
                             <li class="uk-active">
                                 <ul class="uk-list uk-list-striped">
-                                    {% for who in site.whois %}
-                                    <li>{{ who }}</li>
+                                    {% for key in whois_data %}
+                                    {% if whois_data[key] != '' and whois_data[key] != ' ' %}
+                                    <li><strong>{{ key }}:</strong> {{ whois_data[key] }}</li>
+                                    {% endif %}
                                     {% endfor %}
                                 </ul>
                             </li>

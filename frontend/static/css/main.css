@@ -4,6 +4,7 @@
 }
 html {
 	height: 100vh;
+	font-family: 'Exo 2', sans-serif;
 }
 body {
 	font-size: 18px;
@@ -68,4 +69,8 @@ textarea {
 }
 .wrapper {
   min-height: calc(100vh - 84px);
+}
+.uk-subnav>*>:first-child {
+    text-transform: none;
+    font-size: 1rem;
 }
