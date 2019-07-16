@@ -5,6 +5,7 @@ from src import parser
 with open('config/suspicious.yaml', 'r') as f:
 		suspicious = yaml.safe_load(f)
 
+handl = _Handler()
 
 class Check_susp_title:
 	def get_score(self, page):
@@ -77,9 +78,15 @@ class Check_2_auth:
 
 class Check_pass_input:
 	def get_score(self, page):
-		pass_input = list(page.get_html().find_all('input', type='password'))
+		soup = page.get_html()
+
+		print('qweqweq')
+
+		pass_input = soup.find_all('input', type='password')
+
 		if len(pass_input) == 0:
 			return 0
+
 		return suspicious['pass_input']['input']
 
 	def get_description(self):
@@ -140,17 +147,13 @@ class Check_time:
 			It determines if the page has a time-date counter.
 		"""
 
-handl = _Handler()
-
 class Check_cloudflare:
 	def get_score(self, page):
 		domain = page.get_domain()
 		whois = handl.get_whois(domain)
 		words = list(whois['asn_description'].split(' '))
 
-		print(words)
-
-		if 'Cloudflare' in words or 'Cloudflare,' in words:
+		if 'Cloudflare' in words or 'Cloudflare,' in words or 'Cloudflare\n' in words:
 			return suspicious['DNS']['Cloudflare']
 		return 0
 
@@ -158,3 +161,12 @@ class Check_cloudflare:
 		return """
 			It determines if domain is registered in Cloudflare.
 		"""
+
+# class Check_redirect:
+# 	def get_score(self, page):
+
+
+# 	def get_description(self):
+# 		return """
+# 			It determines if domain is redirected to another.
+# 		"""
