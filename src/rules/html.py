@@ -80,7 +80,7 @@ class Check_pass_input:
 	def get_score(self, page):
 		soup = page.get_html()
 
-		pass_input = soup.find_all('input', type='password')
+		pass_input = list(soup.find_all('input', type='password'))
 
 		if len(pass_input) == 0:
 			return 0
