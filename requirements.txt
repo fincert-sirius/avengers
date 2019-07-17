@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Click==7.0
 Flask-Login==0.4.1
 Flask-Migrate==2.5.2
@@ -33,12 +32,10 @@ keyring==10.6.0
 keyrings.alt==3.0
 more-itertools==7.1.0
 packaging==19.0
-pkg-resources==0.0.0
 pluggy==0.12.0
 py==1.8.0
 pycparser==2.19
 pycrypto==2.6.1
-pygobject==3.26.1
 pyparsing==2.4.0
 pytest==5.0.1
 python-dateutil==2.8.0
