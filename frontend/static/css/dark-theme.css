@@ -16,7 +16,11 @@ h2 {
 	color: #FFF !important;
 }
 .uk-list-striped > li:nth-of-type(odd) {
-    background: #555;
+    background: #303030;
+}
+.uk-list-striped>li:nth-of-type(odd) {
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
 }
 .uk-input,
 .uk-textarea,

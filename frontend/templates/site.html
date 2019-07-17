@@ -89,7 +89,7 @@
                                     {% if criterions != None %}
 
                                         {% for key, value in criterions.items() recursive %}
-                                           <li> {{ key }} очков за: {{ value }}</li>
+                                    <li> <strong>{{ key }} очков за</strong>: {{ value }}</li>
                                         {% endfor %}
 
                                     {% else %}
@@ -100,7 +100,7 @@
                                 </ul>
 
                             </li>
-                            <li class="uk-active">
+                            <li>
                                 <ul class="uk-list uk-list-striped">
                                     {% for key in whois_data %}
                                     {% if whois_data[key] != '' and whois_data[key] != ' ' %}
