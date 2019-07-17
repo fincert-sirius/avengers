@@ -38,6 +38,7 @@ h2 {
 .uk-textarea:focus,
 .uk-select:focus {
 	background: #3d3d40;
+	color: #FFF;
 }
 .uk-select,
 .uk-select:focus {
