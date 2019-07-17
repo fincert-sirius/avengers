@@ -189,7 +189,7 @@ def site_info(site_id):
                            form_search=form,
                            form_file=form2,
                            criterions=json.loads(current_site.criterions),
-                           whois_data=json.loads(current_site.whois_data)
+                           whois_data=json.loads(current_site.whois_data) if current_site.whois_data is not None else '{}'
                            )
 
 
