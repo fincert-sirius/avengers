@@ -46,9 +46,12 @@
             <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-width-1-1uk-animation-slide-bottom-small">
                 <div class="top uk-flex uk-flex-bottom uk-margin-bottom">
                     <div class="uk-width-1-3">
-                        <a href="http://{{ site.url }}" class="uk-button button-not-capitalise uk-margin-remove-bottom uk-padding-remove">{{ site.url }}</a>
+                        <a href="http://{{ site.url }}" target="_blank" class="uk-button button-not-capitalise uk-margin-remove-bottom uk-padding-remove">{{ site.url }}</a>
                     </div>
-                    <span class="uk-text-muted"> / 03.07.2019</span>
+                    <span class="uk-text-muted">
+                        {% if site.date != None %}
+                        {{ site.date }}</span>
+                        {% endif %}
                 </div>
                 <div class="uk-body">
                     <div class="uk-text-secondary">
@@ -86,7 +89,7 @@
                                     {% if criterions != None %}
 
                                         {% for key, value in criterions.items() recursive %}
-                                           <li> {{ key }} очков за: {{ value }}</li>
+                                    <li> <strong>{{ key }} очков за</strong>: {{ value }}</li>
                                         {% endfor %}
 
                                     {% else %}

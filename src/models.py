@@ -27,3 +27,4 @@ class Site(db.Model):
     screen = db.Column(db.Text)
     reg_mail = db.Column(db.Text)
     criterions = db.Column(db.Text, default='{}')
+    date = db.Column(db.Text)
