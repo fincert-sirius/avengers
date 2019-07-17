@@ -19,8 +19,8 @@ h2 {
     background: #303030;
 }
 .uk-list-striped>li:nth-of-type(odd) {
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
+    border-top: 0;
+    border-bottom: 0;
 }
 .uk-input,
 .uk-textarea,
@@ -59,7 +59,8 @@ a.uk-button-text:hover,
 a.uk-button-text:focus {
 	color: #cecece;
 }
-.uk-modal-body {
+.uk-modal-body,
+.uk-modal-dialog {
 	background: #19191B;
 }
 .uk-modal-body h3 {
@@ -67,7 +68,19 @@ a.uk-button-text:focus {
 }
 .uk-button-default {
 	color: #FFF;
+	background: #29292B;
 }
 .uk-button-default:hover {
 	color: #EEE;
+	background: #29292B;
+}
+.uk-modal-close-full {
+	background: #19191B;
+}
+.uk-input:disabled {
+	background: #454545;
+	border: 1px solid #bebebe;
+}
+.uk-subnav {
+	background: #19191B;
 }
