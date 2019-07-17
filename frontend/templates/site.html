@@ -146,7 +146,9 @@
                         </ul>
                     </div>
                     {% else %}
-
+                    <strong> Данный домен находится на обработке системой.<br>
+                        Вы можете дождаться окончания проверки либо вынести решение самим.<br><br><br>
+                    </strong>
                     {% endif %}
                     <a href="#modal-example" class="uk-button uk-button-danger" uk-toggle>Заблокировать</a>
                     <a href="/clear/site/{{ site.id }}" class="uk-button uk-button-success">Оставить</a>

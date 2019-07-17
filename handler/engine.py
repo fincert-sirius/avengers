@@ -10,7 +10,7 @@ from models import Site, SiteStatus
 logging.basicConfig(level="INFO")
 
 def handle(domain):
-    time.sleep(15) # magic
+    time.sleep(3) # magic
 
     verdict = 0
     comment = 'Some notes'
