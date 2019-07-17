@@ -21,7 +21,7 @@ def handle(domain):
     if site == None:
         logging.error("This url should be already in database")
 
-    w = whois.whois(domain)
+    w = whois.query(domain)
     w['creation_date'] = str(w['creation_date'])
     w['expiration_date'] = str(w['expiration_date'])
     print(w)
