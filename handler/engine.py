@@ -1,43 +1,33 @@
 import time
 import socket
 import yaml
-from ipwhois import IPWhois
+import whois
+import json
+import logging
 from app import db
 from models import Site, SiteStatus
 
+logging.basicConfig(level="INFO")
 
 def handle(domain):
-    time.sleep(15)  # magic
+    time.sleep(15) # magic
 
     verdict = 0
     comment = 'Some notes'
     category = 'lokhotron'
 
-    whois = get_whois(domain)
-    if whois == 'error':
-        print('This web-site does not exists.')
-        return
-
     site = Site.query.filter(Site.url == domain).one_or_none()
-    site.whois_data = whois
+
+    if site == None:
+        logging.error("This url should be already in database")
+
+    w = whois.whois(domain)
+    w['creation_date'] = str(w['creation_date'])
+    w['expiration_date'] = str(w['expiration_date'])
+    print(w)
+
+    site.whois_data = json.dumps(w, sort_keys=True)
     site.status = SiteStatus.NEW
 
     db.session.add(site)
     db.session.commit()
-
-
-def get_whois(domain):
-    ip = get_ip(domain)
-    if ip == 'error':
-        return 'error'
-    obj = IPWhois(ip)
-    info = obj.lookup_whois()
-    return info
-
-
-def get_ip(domain):
-    try:
-        ip = socket.gethostbyname(domain)
-        return ip
-    except:
-        return 'error'
