@@ -40,6 +40,14 @@ class Result:
 	def get_causes(self):
 		return self.causes
 
+	def get_dict(self):
+		result = dict()
+
+		for cause in self.causes:
+			result[cause.rule.get_description()] = cause.score
+
+		return result
+
 	def __str__(self):
 		s = str(self.get_sum()) + '\n'
 		for cause in self.causes:
