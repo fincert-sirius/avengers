@@ -1,27 +1,27 @@
 keywords:
-    'sberbank': 80
-    'tinkoff': 80
-    'rocket': 45
-    'alphabank': 60
-    'alfabank': 60
-    'gazprombank': 55
+    'sberbank': 50
+    'tinkoff': 50
+    'rocket': 35
+    'alphabank': 50
+    'alfabank': 50
+    'gazprombank': 40
     'unicredit': 35
     'unicreditbank': 35
-    'rosbank': 45
-    'uralsib': 45
-    'uralsibbank': 45
-    'сбербанк': 90
-    'тинькофф': 90
-    'альфабанк': 66
-    'альфа-банк': 66
-    'альфа': 66 
-    'рокет': 45
-    'рокетбанк': 45
-    'рокет-банк': 45
-    'газпромбанк': 55
-    'юникредит': 35
-    'росбанк': 50
-    'уралсиб': 50
+    'rosbank': 35
+    'uralsib': 40
+    'uralsibbank': 40
+    'сбербанк': 50
+    'тинькофф': 50
+    'альфабанк': 50
+    'альфа-банк': 60
+    'альфа': 35
+    'рокет': 35
+    'рокетбанк': 35
+    'рокет-банк': 50
+    'газпромбанк': 40
+    'юникредит': 30
+    'росбанк': 35
+    'уралсиб': 40
 
 # Generic suspicious
     'login': 25
@@ -162,6 +162,11 @@ keywords:
 susp_text:
     'Forgot password': 25
     'Забыли пароль': 25
+    'Банк': 15
+    'Bank': 15
+    
+DNS:
+    'Cloudflare': 40
 
 #Add some suspicious words connected with 2-step verification
 2FA:
@@ -179,11 +184,11 @@ multi-auth:
     "has_multi_auth": 20
 
 pass_input:
-    "input": 10
-    "hid_input": 5
+    "input": 15
+    "hid_input": 20
 
 check_time:
-    "has_timer": 10
+    "has_timer": 40
 
 tlds:
     '.ga':
