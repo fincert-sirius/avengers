@@ -3,6 +3,6 @@ port: 5001
 auto-remove: true
 db_host: localhost
 db_user: root
-db_pwd: ''
+db_pwd: 'password'
 db_name: avengers
 db_port: 3306

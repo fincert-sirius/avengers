@@ -24,7 +24,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://{}:{}@{}:{}/{}".format(
 	config['db_port'], config['db_name'])
 db = SQLAlchemy(app)
 
-import handler.engine
+import handler.engine as engine
 import handler.cli
 
 logging.basicConfig(level='INFO')
@@ -38,6 +38,10 @@ def handling_process(q):
 		engine.handle(domain)
 		logging.info('Handling was completed.')
 
+domainsQueue = Queue()
+handlingThread = Thread(target=handling_process, args=(domainsQueue, ))
+handlingThread.start()
+
 @app.route('/add', methods=['POST'])
 def api():
 	domain = request.data.decode('utf-8')
@@ -46,9 +50,6 @@ def api():
 	return 'ok'
 
 if __name__ == "__main__":
-	domainsQueue = Queue()
-	handlingThread = Thread(target=handling_process, args=(domainsQueue, ))
-	handlingThread.start()
 	
 	app.run(host=config['host'], port=config['port'], debug=True)
 
