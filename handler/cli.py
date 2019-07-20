@@ -1,4 +1,4 @@
-from app import app
+from handler.app import app
 import click
 from src.rules import domain
 from src import scorer, page_getter

@@ -1,14 +1,16 @@
 from base64 import b64decode
 from bs4 import BeautifulSoup as Bs
+import whois
+
 class Page:
 	def __init__(self, url, html):
-		if not url.startswith('https://'):
+		if not url.startswith('https://') or not url.startswith('http://'):
 			url = 'https://' + url
 
 		self.url = url
 		self.html = Bs(html, 'html.parser')
 
-		url = url[8:]
+		q = url.split('/')[2]
 
 		self.domain = url
 
@@ -20,6 +22,10 @@ class Page:
 
 	def get_html(self):
 		return self.html
+
+	def get_whois(self):
+		return whois.whois(self.domain)
+
 		
 class Chrome_page(Page):
 	def __init__(self, url, html, chrome):

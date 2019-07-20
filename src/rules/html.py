@@ -1,11 +1,8 @@
 import yaml
-from handler.engine import _Handler
 from src.parser import parser
 
 with open('config/suspicious.yaml', 'r') as f:
 		suspicious = yaml.safe_load(f)
-
-handl = _Handler()
 
 class Check_susp_title:
 	def get_score(self, page):
@@ -148,10 +145,14 @@ class Check_time:
 class Check_cloudflare:
 	def get_score(self, page):
 		domain = page.get_domain()
-		whois = handl.get_whois(domain)
-		words = list(whois['asn_description'].split(' '))
+		whois = page.get_whois()
 
-		if 'Cloudflare' in words or 'Cloudflare,' in words or 'Cloudflare\n' in words:
+		words = whois['name_servers']
+
+		for word in words:
+			parts = word.split('.')
+
+		if 'cloudflare' in parts or 'cloudflare,' in parts or 'cloudflare\n' in parts:
 			return suspicious['DNS']['Cloudflare']
 		return 0
 

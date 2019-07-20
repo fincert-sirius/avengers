@@ -3,6 +3,7 @@ from src.rules import html
 from collections import namedtuple
 import inspect
 from src import page_getter
+import whois
 
 Cause = namedtuple('Cause', ['rule', 'score'])
 
@@ -11,8 +12,10 @@ class Scorer:
 		self.rules = rules
 
 	def get_score(self, domain):
-		result = Result()
+		w = whois.whois(domain)
+		result = Result(w)
 		page = page_getter.page_getter.get_page(domain)
+		page.whois = w
 
 		for rule in self.rules:
 			score = rule.get_score(page) or 0
@@ -22,8 +25,9 @@ class Scorer:
 		return result
 
 class Result:
-	def __init__(self, causes = []):
+	def __init__(self, whois, causes = []):
 		self.causes = causes
+		self.whois = whois
 
 	def add(self, rule, score):
 		self.causes.append(
@@ -47,6 +51,9 @@ class Result:
 			result[cause.rule.get_description()] = cause.score
 
 		return result
+
+	def get_whois(self):
+		return self.whois
 
 	def __str__(self):
 		s = str(self.get_sum()) + '\n'

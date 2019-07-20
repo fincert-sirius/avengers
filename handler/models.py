@@ -1,4 +1,4 @@
-from app import db
+from handler.app import db
 from enum import Enum
 
 class SiteStatus(Enum):
