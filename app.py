@@ -27,7 +27,6 @@ login_manager.init_app(app)
 ALLOWED_EXTENSIONS = set(['json', 'xml', 'txt', 'csv'])
 
 from src import models
-
 from src import routes
 from src import cli
 

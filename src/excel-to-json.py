@@ -1,4 +1,5 @@
 from openpyxl import load_workbook
+import json
 
 def get_json_from_xls(filename):
     wb = load_workbook(filename)
@@ -9,4 +10,8 @@ def get_json_from_xls(filename):
         result[row[0].value] = emails
     return result
 
-print(get_json_from_xls('hosters.xlsx'))
+if __name__ == "__main__":
+    with open('hosters.json', mode='w') as f:
+        json.dump(get_json_from_xls('hosters.xlsx'), f)
+    print('Done')
+

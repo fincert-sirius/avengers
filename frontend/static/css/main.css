@@ -4,6 +4,8 @@
 }
 html {
 	height: 100vh;
+	font-family: 'Exo 2', sans-serif;
+
 }
 body {
 	font-size: 18px;
@@ -13,6 +15,9 @@ body {
 }
 .top-img-wigth {
 	width: 30%;
+}
+.uk-badge {
+	padding: 6px;
 }
 .badge-green {
 	background: #32d296;
@@ -65,4 +70,9 @@ textarea {
 }
 .wrapper {
   min-height: calc(100vh - 84px);
+}
+.uk-container a.button-not-capitalise {
+	text-transform: none;
+	font-size: 22px;
+	text-align: left;
 }

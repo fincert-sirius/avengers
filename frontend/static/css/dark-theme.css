@@ -16,16 +16,29 @@ h2 {
 	color: #FFF !important;
 }
 .uk-list-striped > li:nth-of-type(odd) {
-    background: #555;
+    background: #303030;
+}
+.uk-list-striped>li:nth-of-type(odd) {
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
 }
 .uk-input,
-.uk-textarea {
+.uk-textarea,
+.uk-select {
 	background: #19191B;
 	border: 1px solid #b0b0b0;
 }
 .uk-input:focus,
-.uk-textarea:focus {
+.uk-textarea:focus,
+.uk-select:focus {
 	background: #3d3d40;
+}
+.uk-select,
+.uk-select:focus {
+	color: #FFF;
+}
+.uk-form-controls > select.uk-select > option.option-white {
+	color: #FFF;
 }
 ul.uk-subnav > li.uk-active > .badge-active-grey {
 	background: #ccc;
@@ -45,4 +58,16 @@ a.uk-button-text {
 a.uk-button-text:hover,
 a.uk-button-text:focus {
 	color: #cecece;
+}
+.uk-modal-body {
+	background: #19191B;
+}
+.uk-modal-body h3 {
+	color: #FFF;
+}
+.uk-button-default {
+	color: #FFF;
+}
+.uk-button-default:hover {
+	color: #EEE;
 }
