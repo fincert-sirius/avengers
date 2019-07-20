@@ -38,12 +38,6 @@
 									{{ site.score }}
 								</div>
 
-					{% elif site.status.name == 'GOOD_SITE' %}
-						<div data-color="green uk-flex-between" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex uk-flex-middle">
-							<div class="flex-wrapper uk-flex">
-								<div class="uk-badge badge-green uk-margin-right uk-margin-small-top">
-									{{ site.score }}
-								</div>
 					{% endif %}
 								<ul class="uk-subnav uk-subnav-divider uk-margin-remove-vertical">
 				                    <a href="/site/{{ site.id }}" class="uk-text-large uk-text-middle">{{ site.url }}</a>
