@@ -4,7 +4,7 @@ from app import app
 from src import mainfunc
 import requests, os, json
 
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, send_from_directory
 from flask_login import login_user, login_required, current_user, logout_user
 from src.models import User, Site
 from app import login_manager, db, log
@@ -226,7 +226,7 @@ def about():
 
 @app.route('/update_db', methods=['GET', 'POST'])
 def add_test():
-    current_site = Site.query.filter(Site.id == 7).first()
+    current_site = Site.query.filter(Site.id == 26).first()
     dict = {'5': 'опа', '10': 'а что это', '14': 'такое у нас'}
     whoisraw = '''Domain Name: acegw.com
 Registry Domain ID: 2251995052_DOMAIN_COM-VRSN
@@ -289,9 +289,12 @@ DNSSEC: Unsigned'''
     #dict2 = {(i[0], i[1]) for i in whoisraw.split('\n')}
     current_site.whois_data = json.dumps(dict_whois, ensure_ascii=False, separators=(',', ':'))
     current_site.criterions = json.dumps(dict, ensure_ascii=False, separators=(',', ': '))
-    current_site.screen = 'https://www.music-bazaar.com/album-images/vol1001/580/580642/2419480-big/-Ban-[EP]-cover.jpg'
-    current_site.date = '09.11.2001'
+    # current_site.screen = 'https://www.music-bazaar.com/album-images/vol1001/580/580642/2419480-big/-Ban-[EP]-cover.jpg'
+    current_site.date = '31.12.2001'
     db.session.commit()
 
     return redirect(url_for('index'))
 
+@app.route('/site_screens/<id>')
+def send_screen(id):
+    return send_from_directory('site_screens', id)
