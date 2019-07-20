@@ -1,5 +1,5 @@
 import yaml
-from handler.handler import _Handler
+from handler.engine import _Handler
 from src.parser import parser
 
 with open('config/suspicious.yaml', 'r') as f:
