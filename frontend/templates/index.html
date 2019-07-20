@@ -20,33 +20,39 @@
 				{% for site in sites %}
 
 					{% if site.status.name == 'NEW' %}
-			            <div data-color="blue" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
-							<div class="uk-badge uk-margin-right uk-margin-small-top">
-								{{ site.score }}
-							</div>
+			            <div data-color="blue" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex uk-flex-middle uk-flex-between">
+							<div class="flex-wrapper uk-flex">
+								<div class="uk-badge uk-margin-right uk-margin-small-top">
+									{{ site.score }}
+								</div>
 					{% elif site.status.name == 'PROCESSING'%}
-						<div data-color="grey" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
-							<div class="uk-badge badge-grey uk-margin-right uk-margin-small-top">
-							</div>
+						<div data-color="grey" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex uk-flex-middle uk-flex-between">
+							<div class="flex-wrapper uk-flex">
+								<div class="uk-badge badge-grey uk-margin-right uk-margin-small-top">
+								</div>
 
 					{% elif site.status.name == 'BLOCKED' %}
-						<div data-color="red" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
-							<div class="uk-badge badge-red uk-margin-right uk-margin-small-top">
-								{{ site.score }}
-							</div>
+						<div data-color="red" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex uk-flex-middle uk-flex-between">
+							<div class="flex-wrapper uk-flex">
+								<div class="uk-badge badge-red uk-margin-right uk-margin-small-top">
+									{{ site.score }}
+								</div>
 
 					{% elif site.status.name == 'GOOD_SITE' %}
-						<div data-color="green" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
-							<div class="uk-badge badge-green uk-margin-right uk-margin-small-top">
-								{{ site.score }}
-							</div>
+						<div data-color="green uk-flex-between" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex uk-flex-middle">
+							<div class="flex-wrapper uk-flex">
+								<div class="uk-badge badge-green uk-margin-right uk-margin-small-top">
+									{{ site.score }}
+								</div>
 					{% endif %}
-							<ul class="uk-subnav uk-subnav-divider uk-margin-remove-top">
-			                    <a href="/site/{{ site.id }}" class="uk-text-large uk-text-middle">{{ site.url }}</a>
-								{% if site.comment != None and site.comment != '' %}
-			                    <li>{{ site.comment }}</li>
-								{% endif %}
-			                </ul>
+								<ul class="uk-subnav uk-subnav-divider uk-margin-remove-vertical">
+				                    <a href="/site/{{ site.id }}" class="uk-text-large uk-text-middle">{{ site.url }}</a>
+									{% if site.comment != None and site.comment != '' %}
+				                    <li>{{ site.comment }}</li>
+									{% endif %}
+				                </ul>
+			                </div>
+							<a href="" class="" uk-close></a>
 			            </div>
 	            {% endfor %}
 	        </div>
