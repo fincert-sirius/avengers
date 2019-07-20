@@ -6,27 +6,28 @@ import json
 import logging
 from app import db
 from models import Site, SiteStatus
+from src.scorer import default_scorer as scorer
+from src.page_getter import page_getter
 
 logging.basicConfig(level="INFO")
 
 def handle(domain):
-    time.sleep(3) # magic
+    result = scorer.get_score(domain)
+    res_dict = result.get_dict()
 
-    verdict = 0
-    comment = 'Some notes'
-    category = 'lokhotron'
+    page = page_getter.get_page(domain)
+    site = Site.query.filter(Site.url == domain).one()
 
-    site = Site.query.filter(Site.url == domain).one_or_none()
+    page.save_screenshot('site_screens/{}.png'.format(site.id))
 
-    if site == None:
-        logging.error("This url should be already in database")
+    #w = whois.query(domain)
 
-    w = whois.query(domain)
-    w['creation_date'] = str(w['creation_date'])
-    w['expiration_date'] = str(w['expiration_date'])
-    print(w)
+    #w['creation_date'] = str(w['creation_date'])
+    #w['expiration_date'] = str(w['expiration_date'])
 
-    site.whois_data = json.dumps(w, sort_keys=True)
+    site.screen = f'site_screens/{site.id}.png'
+    site.score = result.get_sum()
+    #site.whois_data = json.dumps(w, sort_keys=True)
     site.status = SiteStatus.NEW
 
     db.session.add(site)
