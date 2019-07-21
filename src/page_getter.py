@@ -40,6 +40,7 @@ class Page_getter_chrome(Page_getter):
 		chrome.Page.navigate(url=url)
 		chrome.wait_event("Page.loadEventFired", timeout=60)
 		time.sleep(10)
+		# print(chrome.Page.getNavigationHistory())
 		url = chrome.Page.getNavigationHistory()['result']['entries'][-1]['url']
 		id = chrome.DOM.getDocument()['result']['root']['nodeId']
 		return Chrome_page(

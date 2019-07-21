@@ -13,9 +13,11 @@ class Page:
 		q = url.split('/')[2]
 
 		self.domain = q
-
-		self.whois = whois.whois(self.domain)
-		print(self.whois)
+		
+		try:
+			self.whois = whois.whois(self.domain)
+		except:
+			self.whois = None
 
 	def get_url(self):
 		return self.url

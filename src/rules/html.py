@@ -147,6 +147,9 @@ class Check_cloudflare:
 		domain = page.get_domain()
 		whois = page.get_whois()
 
+		if whois is None:
+			return 0
+
 		words = whois['name_servers']
 
 		for word in words:

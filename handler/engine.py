@@ -20,17 +20,20 @@ def handle(domain):
 
 	w = result.get_whois()
 	# print("1<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", domain, site.screen, site.score, site.whois_data, sep='\n', file=stdout)
+	if w is not None:
+		w['creation_date'] = str(w['creation_date'])
+		w['expiration_date'] = str(w['expiration_date'])
 
-	w['creation_date'] = str(w['creation_date'])
-	w['expiration_date'] = str(w['expiration_date'])
-
-	for key in w.keys():
-		w[key] = str(w[key])
+		for key in w.keys():
+			w[key] = str(w[key])
 
 	site.screen = 'site_screens/{}.png'.format(site.id)
 	site.score = str(result.get_sum())
 	site.status = SiteStatus.NEW
-	site.whois_data = json.dumps(w)
+	if w is not None:
+		site.whois_data = json.dumps(w)
+	else:
+		site.whois_data = json.dumps({})
 
 	try:
 		db.session.add(site)
