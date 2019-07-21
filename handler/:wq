@@ -38,12 +38,8 @@ def handling_process(q):
 	while True:
 		domain = q.get()
 		logging.info('Handling resource {}...'.format(domain))
-        try:
-		    engine.handle(domain)
-		    logging.info('Handling was completed.')
-        except:
-            logging.info('An error occured while parsing {}'.format(domain))
-            continue
+		engine.handle(domain)
+		logging.info('Handling was completed.')
 
 domainsQueue = Queue()
 handlingThread = Thread(target=handling_process, args=(domainsQueue, ))
