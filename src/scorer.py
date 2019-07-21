@@ -12,10 +12,8 @@ class Scorer:
 		self.rules = rules
 
 	def get_score(self, domain):
-		w = whois.whois(domain)
-		result = Result(w)
 		page = page_getter.page_getter.get_page(domain)
-		page.whois = w
+		result = Result(page.get_whois())
 
 		for rule in self.rules:
 			score = rule.get_score(page) or 0
@@ -25,7 +23,7 @@ class Scorer:
 		return result
 
 class Result:
-	def __init__(self, whois, causes = []):
+	def __init__(self, whois = dict(), causes = []):
 		self.causes = causes
 		self.whois = whois
 

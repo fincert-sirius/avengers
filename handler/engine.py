@@ -19,10 +19,10 @@ def handle(domain):
 	page.save_screenshot('site_screens/{}.png'.format(site.id))
 
 	w = result.get_whois()
-	print("1<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", domain, site.screen, site.score, site.whois_data, sep='\n', file=stdout)
+	# print("1<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", domain, site.screen, site.score, site.whois_data, sep='\n', file=stdout)
 
-	# w['creation_date'] = str(w['creation_date'])
-	# w['expiration_date'] = str(w['expiration_date'])
+	w['creation_date'] = str(w['creation_date'])
+	w['expiration_date'] = str(w['expiration_date'])
 
 	for key in w.keys():
 		w[key] = str(w[key])

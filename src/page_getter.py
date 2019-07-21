@@ -1,6 +1,7 @@
 import requests
 from src.page import Page, Chrome_page
 import PyChromeDevTools
+import time
 
 
 class Page_getter:
@@ -20,9 +21,8 @@ class Page_getter_requests(Page_getter):
 
 class Page_getter_chrome(Page_getter):
 	def get_page(self, url):
-		if not url.startswith('https://') or not url.startswith('http://'):
+		if not url.startswith('https://') and not url.startswith('http://'):
 			url = 'https://' + url
-
 
 		chrome = PyChromeDevTools.ChromeInterface(
 			host="localhost",
@@ -39,6 +39,8 @@ class Page_getter_chrome(Page_getter):
 		chrome.Page.enable()
 		chrome.Page.navigate(url=url)
 		chrome.wait_event("Page.loadEventFired", timeout=60)
+		time.sleep(10)
+		url = chrome.Page.getNavigationHistory()['result']['entries'][-1]['url']
 		id = chrome.DOM.getDocument()['result']['root']['nodeId']
 		return Chrome_page(
 			chrome=chrome,

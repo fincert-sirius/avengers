@@ -4,7 +4,7 @@ import whois
 
 class Page:
 	def __init__(self, url, html):
-		if not url.startswith('https://') or not url.startswith('http://'):
+		if not url.startswith('https://') and not url.startswith('http://'):
 			url = 'https://' + url
 
 		self.url = url
@@ -12,7 +12,10 @@ class Page:
 
 		q = url.split('/')[2]
 
-		self.domain = url
+		self.domain = q
+
+		self.whois = whois.whois(self.domain)
+		print(self.whois)
 
 	def get_url(self):
 		return self.url
@@ -24,8 +27,7 @@ class Page:
 		return self.html
 
 	def get_whois(self):
-		return whois.whois(self.domain)
-
+		return self.whois
 		
 class Chrome_page(Page):
 	def __init__(self, url, html, chrome):
