@@ -15,7 +15,13 @@ def handle(domain):
 	res_dict = result.get_dict()
 
 	page = page_getter.get_page(domain)
-	site = Site.query.filter(Site.url == domain).one()
+	site = Site.query.filter(Site.url == domain).one_or_none()
+
+	if site is None:
+		site = Site(url=domain)
+		db.session.add(site)
+		db.session.commit()
+
 	page.save_screenshot('site_screens/{}.png'.format(site.id))
 
 	w = result.get_whois()
@@ -27,6 +33,8 @@ def handle(domain):
 		for key in w.keys():
 			w[key] = str(w[key])
 
+
+	site.criterions = json.dumps(res_dict)
 	site.screen = 'site_screens/{}.png'.format(site.id)
 	site.score = str(result.get_sum())
 	site.status = SiteStatus.NEW
@@ -35,6 +43,7 @@ def handle(domain):
 	else:
 		site.whois_data = json.dumps({})
 
+	print('>>>>>>>>>>>>', result, file=stdout)
 	try:
 		db.session.add(site)
 		db.session.commit()

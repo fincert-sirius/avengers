@@ -151,9 +151,11 @@ class Check_cloudflare:
 			return 0
 
 		words = whois['name_servers']
-
-		for word in words:
-			parts = word.split('.')
+		try:
+			for word in words:
+				parts = word.split('.')
+		except:
+			return 0
 
 		if 'cloudflare' in parts or 'cloudflare,' in parts or 'cloudflare\n' in parts:
 			return suspicious['DNS']['Cloudflare']

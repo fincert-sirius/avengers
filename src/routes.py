@@ -298,3 +298,10 @@ DNSSEC: Unsigned'''
 @app.route('/site_screens/<id>')
 def send_screen(id):
     return send_from_directory('site_screens', id)
+
+@app.route('/remove/<int:id>', methods=['GET'])
+def remove(id):
+    Site.query.filter(Site.id == id).delete()
+    db.session.commit()
+    return redirect(url_for('index'))
+    

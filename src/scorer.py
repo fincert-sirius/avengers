@@ -23,8 +23,8 @@ class Scorer:
 		return result
 
 class Result:
-	def __init__(self, whois = dict(), causes = []):
-		self.causes = causes
+	def __init__(self, whois):
+		self.causes = []
 		self.whois = whois
 
 	def add(self, rule, score):
