@@ -6,45 +6,46 @@
 {% block content %}
 	<div class="uk-container uk-margin-top">
 	    <div uk-filter="target: .js-filter">
-	        <ul class="uk-subnav uk-subnav-pill uk-animation-slide-top-small">
-	            <li uk-filter-control><a href="#">Все</a></li>
-	            <li class="uk-active" uk-filter-control="[data-color='blue']"><a href="#">На рассмотрение</a></li>
-	            <li uk-filter-control="[data-color='grey']"><a class="badge-active-grey" href="#">На проверке системой</a></li>
-	            <li uk-filter-control="[data-color='red']"><a class="badge-active-dark" href="#">Заблокированы</a></li>
-	            <li uk-filter-control="[data-color='green']"><a class="badge-active-dark" href="#">Оставлены</a></li>
-	        </ul>
+	    	<div uk-sticky>
+		        <ul class="uk-subnav uk-subnav-pill uk-animation-slide-top-small">
+		            <li uk-filter-control><a href="#">Все</a></li>
+		            <li class="uk-active" uk-filter-control="[data-color='blue']"><a href="#">На рассмотрение</a></li>
+		            <li uk-filter-control="[data-color='grey']"><a class="badge-active-grey" href="#">На проверке системой</a></li>
+		            <li uk-filter-control="[data-color='red']"><a class="badge-active-dark" href="#">Заблокированы</a></li>
+		        </ul>
+	        </div>
 
 	        <div class="js-filter uk-animation-slide-bottom-small">
 				{% for site in sites %}
 
 					{% if site.status.name == 'NEW' %}
-			            <div data-color="blue" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
-							<div class="uk-badge uk-margin-right uk-margin-small-top">
-								{{ site.score }}
-							</div>
+			            <div data-color="blue" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex uk-flex-middle uk-flex-between">
+							<div class="flex-wrapper uk-flex">
+								<div class="uk-badge uk-margin-right uk-margin-small-top">
+									{{ site.score }}
+								</div>
 					{% elif site.status.name == 'PROCESSING'%}
-						<div data-color="grey" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
-							<div class="uk-badge badge-grey uk-margin-right uk-margin-small-top">
-							</div>
+						<div data-color="grey" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex uk-flex-middle uk-flex-between">
+							<div class="flex-wrapper uk-flex">
+								<div class="uk-badge badge-grey uk-margin-right uk-margin-small-top">
+								</div>
 
 					{% elif site.status.name == 'BLOCKED' %}
-						<div data-color="red" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
-							<div class="uk-badge badge-red uk-margin-right uk-margin-small-top">
-								{{ site.score }}
-							</div>
+						<div data-color="red" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex uk-flex-middle uk-flex-between">
+							<div class="flex-wrapper uk-flex">
+								<div class="uk-badge badge-red uk-margin-right uk-margin-small-top">
+									{{ site.score }}
+								</div>
 
-					{% elif site.status.name == 'GOOD_SITE' %}
-						<div data-color="green" class="uk-card uk-card-small uk-card-default uk-card-body uk-margin-bottom uk-flex">
-							<div class="uk-badge badge-green uk-margin-right uk-margin-small-top">
-								{{ site.score }}
-							</div>
 					{% endif %}
-							<ul class="uk-subnav uk-subnav-divider uk-margin-remove-top">
-			                    <a href="/site/{{ site.id }}" class="uk-text-large uk-text-middle">{{ site.url }}</a>
-								{% if site.comment != None and site.comment != '' %}
-			                    <li>{{ site.comment }}</li>
-								{% endif %}
-			                </ul>
+								<ul class="uk-subnav uk-subnav-divider uk-margin-remove-vertical">
+				                    <a href="/site/{{ site.id }}" class="uk-text-large uk-text-middle">{{ site.url }}</a>
+									{% if site.comment != None and site.comment != '' %}
+				                    <li>{{ site.comment }}</li>
+									{% endif %}
+				                </ul>
+			                </div>
+							<a href="" class="" uk-close></a>
 			            </div>
 	            {% endfor %}
 	        </div>

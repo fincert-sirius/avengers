@@ -1,9 +1,14 @@
 html,
 body {
 	background: #19191B;
+	font-family: 'Exo 2', sans-serif !important;
 }
 h2 {
 	color: #FFF;
+}
+.uk-card-default .uk-card-title {
+    color: #FFF;
+    font-weight: bold;
 }
 .uk-card {
 	color: #FFF !important;
@@ -16,18 +21,24 @@ h2 {
 	color: #FFF !important;
 }
 .uk-list-striped > li:nth-of-type(odd) {
-    background: #555;
+    background: #303030;
+}
+.uk-list-striped>li:nth-of-type(odd) {
+    border-top: 0;
+    border-bottom: 0;
 }
 .uk-input,
 .uk-textarea,
 .uk-select {
 	background: #19191B;
 	border: 1px solid #b0b0b0;
+	color: #FFF;
 }
 .uk-input:focus,
 .uk-textarea:focus,
 .uk-select:focus {
 	background: #3d3d40;
+	color: #FFF;
 }
 .uk-select,
 .uk-select:focus {
@@ -55,7 +66,8 @@ a.uk-button-text:hover,
 a.uk-button-text:focus {
 	color: #cecece;
 }
-.uk-modal-body {
+.uk-modal-body,
+.uk-modal-dialog {
 	background: #19191B;
 }
 .uk-modal-body h3 {
@@ -63,7 +75,19 @@ a.uk-button-text:focus {
 }
 .uk-button-default {
 	color: #FFF;
+	background: #29292B;
 }
 .uk-button-default:hover {
 	color: #EEE;
+	background: #29292B;
+}
+.uk-modal-close-full {
+	background: #19191B;
+}
+.uk-input:disabled {
+	background: #454545;
+	border: 1px solid #bebebe;
+}
+.uk-subnav {
+	background: #19191B;
 }

@@ -4,6 +4,7 @@
 }
 html {
 	height: 100vh;
+	font-family: 'Exo 2', sans-serif !important;
 }
 body {
 	font-size: 18px;
@@ -73,4 +74,8 @@ textarea {
 	text-transform: none;
 	font-size: 22px;
 	text-align: left;
+}
+.uk-subnav>*>:first-child {
+    text-transform: none;
+    font-size: 1rem;
 }
