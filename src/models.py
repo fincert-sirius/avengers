@@ -19,7 +19,7 @@ class SiteStatus(Enum):
 
 class Site(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    url = db.Column(db.String(100, collation='utf8'), unique=True)
+    url = db.Column(db.String(100, collation='utf8_unicode_ci'), unique=True)
     status = db.Column(db.Enum(SiteStatus), default=SiteStatus.PROCESSING)
     comment = db.Column(db.Text)
     whois_data = db.Column(db.Text)

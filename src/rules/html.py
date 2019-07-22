@@ -163,12 +163,3 @@ class Check_cloudflare:
 		return """
 			It determines if domain is registered in Cloudflare.
 		"""
-
-# class Check_redirect:
-# 	def get_score(self, page):
-
-
-# 	def get_description(self):
-# 		return """
-# 			It determines if domain is redirected to another.
-# 		"""

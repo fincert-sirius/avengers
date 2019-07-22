@@ -48,20 +48,20 @@ class Susp_words:
 			(.com-info.net)
 		"""
 
-class Keywords:
-	def get_score(self, page):
-		score = 0
-		domain = page.get_domain()
+# class Keywords:
+# 	def get_score(self, page):
+# 		score = 0
+# 		domain = page.get_domain()
 
-		for word in _suspicious['keywords']:
-			if word in domain:
-				score += _suspicious['keywords'][word]
-		return score
+# 		for word in _suspicious['keywords']:
+# 			if word in domain:
+# 				score += _suspicious['keywords'][word]
+# 		return score
 
-	def get_description(self):
-		return """
-			Some keywords(...)
-		"""
+# 	def get_description(self):
+# 		return """
+# 			Some keywords(...)
+# 		"""
 
 
 class Lev_dist:
