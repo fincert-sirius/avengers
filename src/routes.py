@@ -12,6 +12,7 @@ from src import forms
 import sqlalchemy
 
 
+
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
@@ -29,7 +30,7 @@ def index():
                     return render_template(
                         "index.html",
                         user=current_user,
-                        sites=Site.query.all(),
+                        sites=Site.query.order_by(sqlalchemy.desc(Site.score)),
                         form_search=form_search,
                         form_file=form_file
                     )
@@ -37,7 +38,7 @@ def index():
                     return render_template(
                         "index.html",
                         user=current_user,
-                        sites=Site.query.all(),
+                        sites=Site.query.order_by(sqlalchemy.desc(Site.score)),
                         form_search=form_search,
                         form_file=form_file,
                         error='Не удается подключиться к серверу-обработчику.\nПроверьте подключение.'
@@ -48,7 +49,7 @@ def index():
                 return render_template(
                     "index.html",
                     user=current_user,
-                    sites=Site.query.all(),
+                    sites=Site.query.order_by(sqlalchemy.desc(Site.score)),
                     form_search=form_search,
                     form_file=form_file,
                     error='Данный URL уже есть в базе данных.'
@@ -57,7 +58,7 @@ def index():
             return render_template(
                 "index.html",
                 user=current_user,
-                sites=Site.query.all(),
+                sites=Site.query.order_by(sqlalchemy.desc(Site.score)),
                 form_search=form_search,
                 form_file=form_file,
                 error="Введите корректное доменное имя."
@@ -75,7 +76,7 @@ def index():
     return render_template(
         "index.html",
         user=current_user,
-        sites=Site.query.all(),
+        sites=Site.query.order_by(sqlalchemy.desc(Site.score)),
         form_search=form_search,
         form_file=form_file,
         error=None
@@ -167,7 +168,7 @@ def upload():
                 return render_template(
                     "index.html",
                     user=current_user,
-                    sites=Site.query.all(),
+                    sites=Site.query.order_by(sqlalchemy.desc(Site.score)),
                     form_search=form_search,
                     form_file=form_file,
                     error='Не удается подключиться к серверу-обработчику.\nПроверьте подключение.'
@@ -304,4 +305,4 @@ def remove(id):
     Site.query.filter(Site.id == id).delete()
     db.session.commit()
     return redirect(url_for('index'))
-    
+

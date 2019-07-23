@@ -1,6 +1,7 @@
 from base64 import b64decode
 from bs4 import BeautifulSoup as Bs
 import whois
+from sys import stdout
 
 class Page:
 	def __init__(self, url, html):
@@ -16,7 +17,9 @@ class Page:
 		
 		try:
 			self.whois = whois.whois(self.domain)
+			print('page.py>>>>>>>',self.whois, self.domain, file=stdout)
 		except:
+
 			self.whois = None
 
 	def get_url(self):

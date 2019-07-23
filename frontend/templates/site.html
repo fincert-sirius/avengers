@@ -103,9 +103,16 @@
                             <li>
                                 <ul class="uk-list uk-list-striped">
                                     {% for key in whois_data %}
-                                    {% if whois_data[key] != '' and whois_data[key] != ' ' %}
-                                    <li><strong>{{ key }}:</strong> {{ whois_data[key] }}</li>
-                                    {% endif %}
+                                        {% if whois_data[key] != '' and whois_data[key] != ' ' %}
+                                            {% if whois_data[key][0] == '[' and whois_data[key][-1] == ']' %}
+                                            <li><strong>{{ key }}</strong>:
+                                                    {% for i in whois_data[key][1:-1].split(',') %}
+                                                        {{ i }}
+                                                    {% endfor %}</li>
+                                            {% else %}
+                                                <li><strong>{{ key }}:</strong> {{ whois_data[key] }}</li>
+                                            {% endif %}
+                                        {% endif %}
                                     {% endfor %}
                                 </ul>
                             </li>

@@ -20,7 +20,7 @@ texts = {
     'fakebank_ru': u'''Уважаемые коллеги!
 
 Наши специалисты обнаружили фишинговый сайт: {}
-На данном сайте организация {названиеорг} предлагает услуги по выдаче кредитов. 
+На данном сайте организация {} предлагает услуги по выдаче кредитов. 
 Банк России не располагает сведениями об организации {} и интернет-сайте {} –
 http://cbr.ru/credit/main.asp
 
@@ -111,7 +111,7 @@ E: FinCERT@cbr.ru
 ''',
     'faketick': u'''Коллеги, добрый день!
 
-Наши специалисты обнаружили фишинговый сайт: {url}
+Наши специалисты обнаружили фишинговый сайт: {}
 
 Данный ресурс представляет собой сервис по продаже билетов. После выбора билетов ресурс предлагает пользователю ввести личные сведения для оплаты, не имея полномочий на работу с персональными данными и не являясь оператором по переводу электронных денежных средств.
 
@@ -259,7 +259,7 @@ def web_archive(DOMAIN, FROM=2018, TO=2019):
 
 def send_email(subject, to_addr, body_text):
     config = configparser.ConfigParser()
-    config.read(r'C:\Users\User\PycharmProjects\avengers_final\src\settings.ini')
+    config.read(r'src/settings.ini')
     user = config.get('SMTP', "user")
     psw = config.get('SMTP', "psw")
     server = config.get("SMTP", 'SMTP_server')
@@ -351,5 +351,5 @@ def upload_file(filename):
     elif ext == 'txt':
         return upload_txt(filename)
 
-# send_to_registrator('ya.ru', 'fakebank_en', 'xenon.a@ya.ru')
+#send_to_registrator('ya.ru', 'fakebank_en', 'xenon.a@ya.ru')
 #print(upload_file('input.csv'))

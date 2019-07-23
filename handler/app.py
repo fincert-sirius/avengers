@@ -1,8 +1,10 @@
 from flask import Flask, request
 from threading import Thread
 from queue import Queue
+
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+
 import logging
 import json
 import yaml
@@ -23,6 +25,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://{}:{}@{}:{}/{}".format(
 	config['db_user'], config['db_pwd'], config['db_host'],
 	config['db_port'], config['db_name'])
 db = SQLAlchemy(app)
+
 
 import handler.engine as engine
 import handler.cli

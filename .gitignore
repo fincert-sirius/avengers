@@ -101,6 +101,7 @@ celerybeat-schedule
 .env
 .venv
 env/
+env2/
 venv/
 ENV/
 env.bak/
@@ -134,3 +135,4 @@ node_modules
 # others
 handler/.vscode
 handler/verdicts.json
+site_screens/
