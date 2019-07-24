@@ -200,7 +200,7 @@ def ban_site(site_id):
     comment = form.comment.data
     site_type = request.form.get('site_type')
     current_site = Site.query.filter(Site.id == site_id).first()
-    mainfunc.send_to_registrator(current_site.url, site_type, current_site.reg_mail)
+    #mainfunc.send_to_registrator(current_site.url, site_type, current_site.reg_mail)
     current_site.status = 'BLOCKED'
     current_site.comment = comment
     db.session.commit()

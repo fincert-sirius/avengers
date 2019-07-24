@@ -86,7 +86,7 @@
                         <ul class="uk-switcher uk-margin">
                             <li class="uk-active">
                                 <ul class="uk-list uk-list-striped">
-                                    {% if criterions != None and criterions != '{}' %}
+                                    {% if criterions != None and criterions !={} %}
 
                                         {% for key, value in criterions.items() recursive %}
                                     <li> <strong>{{ value }} очков за</strong>: {{ key }}</li>
@@ -102,24 +102,28 @@
                             </li>
                             <li>
                                 <ul class="uk-list uk-list-striped">
-                                    {% for key in whois_data %}
-                                        {% if whois_data[key] != '' and whois_data[key] != ' ' %}
-                                            {% if whois_data[key][0] == '[' and whois_data[key][-1] == ']' %}
-                                            <li><strong>{{ key }}</strong>:
-                                                    {% for i in whois_data[key][1:-1].split(',') %}
-                                                        {{ i }}
-                                                    {% endfor %}</li>
-                                            {% else %}
-                                                <li><strong>{{ key }}:</strong> {{ whois_data[key] }}</li>
+                                    {% if whois_data != {} %}
+                                        {% for key in whois_data %}
+                                            {% if whois_data[key] != '' and whois_data[key] != ' ' %}
+                                                {% if whois_data[key][0] == '[' and whois_data[key][-1] == ']' %}
+                                                <li><strong>{{ key }}</strong>:
+                                                        {% for i in whois_data[key][1:-1].split(',') %}
+                                                            {{ i }}
+                                                        {% endfor %}</li>
+                                                {% else %}
+                                                    <li><strong>{{ key }}:</strong> {{ whois_data[key] }}</li>
+                                                {% endif %}
                                             {% endif %}
-                                        {% endif %}
-                                    {% endfor %}
+                                        {% endfor %}
+                                    {% else %}
+                                        <li>Whois сервер не располагает информацией по данному домену.</li>
+                                    {% endif %}
                                 </ul>
                             </li>
 
                             <li>
 
-                                <form class="uk-form-horizontal">
+                               <!--  <form class="uk-form-horizontal">
                                     <div class="uk-margin uk-width-1-2">
                                         <label class="uk-form-label" for="form-stacked-text">
                                             Дата начала
@@ -136,7 +140,8 @@
                                             <input class="uk-input" id="form-stacked-text" type="date">
                                         </div>
                                     </div>
-                                </form>
+                                    <a class="uk-button uk-button-default" href="/site/{{ site.id }}"></a>
+                                </form> -->
 
 
                                 <ul class="uk-list uk-list-striped">

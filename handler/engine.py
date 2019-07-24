@@ -11,10 +11,10 @@ from datetime import datetime
 logging.basicConfig(level="INFO")
 
 def handle(domain):
-	try:
-		result = scorer.get_score(domain)
-	except:
-		print('<<<<<<<<<<<<<jopa proizoshla', file=stdout)
+	result = scorer.get_score(domain)
+	# except:
+	# 	print('<<<<<<<<<<<<<jopa proizoshla', file=stdout)
+	# 	return 'Jopa'
 	res_dict = result.get_dict()
 
 	page = page_getter.get_page(domain)
